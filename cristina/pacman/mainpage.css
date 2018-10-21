@@ -1,0 +1,67 @@
+html { 
+    background: url(background.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+
+.title{
+    font-size: 600%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10%;
+    color: rgb(0, 0, 0);
+    text-shadow: -1px 0 black, 0 10px black, 3px 0 black, 0 -1px black;
+    color: #fcb150;
+    font-family: "Comic Sans MS";
+    /* outline-color: aquamarine; */
+    
+
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: black;
+    /* background-image: url(btn-bg.jpg); */
+    border: none;
+    font-size: 25px;
+    color:  #fcb150;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    margin: auto;
+    font-family: "Comic Sans MS";
+    border: 3px solid  #fcb150;
+    border-radius: 20px;
+    
+}
+
+.button:after {
+    content: "";
+    background: rgb(133, 93, 9);
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
