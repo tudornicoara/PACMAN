@@ -10,16 +10,27 @@
 
 }
 
+.top-bar p{
+    float:right;
+    margin-right:10%;
+    margin-top:-5%;
+    font-family: "Comic Sans MS";
+    font-size: 300%;
+    color: #c90101;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+ 
+}
+
 /*
 orange  -  #fcb150
 blue    -  #50c3fc
 */
 
-.top-bar h1 {
-    font-family: "Comic Sans MS";
-    font-size: 300%;
-    color: #fcb150;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+.top-bar img {
+    width: 500px;
+    height: 80px;
+    margin-left: 20px;
+    margin-right:15px;
 }
 
 .ground {
@@ -38,4 +49,8 @@ blue    -  #50c3fc
     background-image: url(Sprites/pacman.png);
     width: 50px;
     height: 50px;
+}
+
+body {
+    background: black;
 }
