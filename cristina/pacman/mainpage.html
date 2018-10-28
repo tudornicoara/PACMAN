@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -22,10 +23,10 @@
           <h1>LOGIN WITH FACEBOOK</h1>
           <hr>
           <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required>
+          <input type="text" placeholder="Enter Email" name="email" id="email" required > 
     
           <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
+          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
     
           <label>
             <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -49,10 +50,10 @@
   <!-- <script src="js/scripts.js"></script> -->
 
   <script>
-    // Get the modal
+    // get the modal
     var modal = document.getElementById('id01');
     
-    // When the user clicks anywhere outside of the modal, close it
+    // close the modal when the user clicks anywhere outside it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
