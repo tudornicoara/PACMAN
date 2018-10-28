@@ -33,24 +33,92 @@ blue    -  #50c3fc
     margin-right:15px;
 }
 
-.ground {
-    background-image: url(Sprites/tile.png);
-    width: 50px;
-    height: 50px;
-}
-
 .wall {
-    background-image: url(Sprites/wall.png);
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+    /* background-image: url('wall.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.coin {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('coin.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.power-up {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('coin.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.ground {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('bg.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('ghost1.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.pacman {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('pacman.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost1 {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('ghost.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost2 {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('ghost.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost3 {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('ghost.png'); */
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost4 {
+    width: 40px;
+    height: 40px;
+    /* background-image: url('ghost.png'); */
+    display: inline-block;
+    line-height: 0px;
 }
 
-.pacman {
-    background-image: url(Sprites/pacman.png);
-    width: 50px;
-    height: 50px;
+img {
+    width: 40px;
+    height: 40px;
+}
+
+#world {
+    margin-left: 150px;
+    margin-bottom: 75px;
+    position: fixed;
+    bottom: 0;
+    right:0;
+    left:0;
+    line-height: 0px;
 }
 
 body {
-    background: black;
+    background: #B2ADAA;
 }
