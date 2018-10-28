@@ -25,67 +25,73 @@ blue    -  #50c3fc
 .wall {
     width: 50px;
     height: 50px;
-    background-image: url('wall.png');
+    /* background-image: url('wall.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .coin {
     width: 50px;
     height: 50px;
-    background-image: url('coin.png');
+    /* background-image: url('coin.png'); */
     display: inline-block;line-height: 0px;
 }
 .ground {
     width: 50px;
     height: 50px;
-    background-image: url('bg.png');
+    /* background-image: url('bg.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .ghost {
     width: 50px;
     height: 50px;
-    background-image: url('ghost1.png');
+    /* background-image: url('ghost1.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .pacman {
     width: 50px;
     height: 50px;
-    background-image: url('pacman.png');
+    /* background-image: url('pacman.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .ghost1 {
     width: 50px;
     height: 50px;
-    background-image: url('ghost.png');
+    /* background-image: url('ghost.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .ghost2 {
     width: 50px;
     height: 50px;
-    background-image: url('ghost.png');
+    /* background-image: url('ghost.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .ghost3 {
     width: 50px;
     height: 50px;
-    background-image: url('ghost.png');
+    /* background-image: url('ghost.png'); */
     display: inline-block;
     line-height: 0px;
 }
 .ghost4 {
     width: 50px;
     height: 50px;
-    background-image: url('ghost.png');
+    /* background-image: url('ghost.png'); */
     display: inline-block;
     line-height: 0px;
 }
 
+img {
+    width: 50px;
+    height: 50px;
+}
+
 #world {
+    margin-left: 17px;
     position: fixed;
     bottom: 0;
     right:0;
