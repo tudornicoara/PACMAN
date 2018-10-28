@@ -1,0 +1,94 @@
+.top-bar {
+    background-image: url(img/1.jpg);
+    background-position: center;
+    position: fixed;
+    max-width: 100%;
+    height: 12%;
+    top: 0;
+    right:0;
+    left:0;
+}
+
+/*
+orange  -  #fcb150
+blue    -  #50c3fc
+*/
+
+.top-bar h1 {
+    font-family: "Comic Sans MS";
+    font-size: 300%;
+    color: #fcb150;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+.wall {
+    width: 50px;
+    height: 50px;
+    background-image: url('wall.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.coin {
+    width: 50px;
+    height: 50px;
+    background-image: url('coin.png');
+    display: inline-block;line-height: 0px;
+}
+.ground {
+    width: 50px;
+    height: 50px;
+    background-image: url('bg.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost {
+    width: 50px;
+    height: 50px;
+    background-image: url('ghost1.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.pacman {
+    width: 50px;
+    height: 50px;
+    background-image: url('pacman.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost1 {
+    width: 50px;
+    height: 50px;
+    background-image: url('ghost.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost2 {
+    width: 50px;
+    height: 50px;
+    background-image: url('ghost.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost3 {
+    width: 50px;
+    height: 50px;
+    background-image: url('ghost.png');
+    display: inline-block;
+    line-height: 0px;
+}
+.ghost4 {
+    width: 50px;
+    height: 50px;
+    background-image: url('ghost.png');
+    display: inline-block;
+    line-height: 0px;
+}
+
+#world {
+    position: fixed;
+    bottom: 0;
+    right:0;
+    left:0;
+    line-height: 0px;
+}
