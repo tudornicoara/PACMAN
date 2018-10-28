@@ -36,16 +36,16 @@ function drawWorld(){
 				el.innerHTML += "<div class='pacman'><img src='pacman.png'></div>";
 			}
 			else if (map[y][x] === 5) {
-				el.innerHTML += "<div class='ghost1'><img src='ghost.png'></div>";
+				el.innerHTML += "<div class='ghost1'><img src='img/profi/ciobaca.png'></div>";
 			}
 			else if (map[y][x] === 6) {
-				el.innerHTML += "<div class='ghost2'><img src='ghost.png'></div>";
+				el.innerHTML += "<div class='ghost2'><img src='img/profi/ferucio.png'></div>";
 			}
 			else if (map[y][x] === 7) {
-				el.innerHTML += "<div class='ghost3'><img src='ghost.png'></div>";
+				el.innerHTML += "<div class='ghost3'><img src='img/profi/masalagiu.png'></div>";
 			}
 			else if (map[y][x] === 8) {
-				el.innerHTML += "<div class='ghost4'><img src='ghost.png'></div>";
+				el.innerHTML += "<div class='ghost4'><img src='img/profi/iacob.png'></div>";
 			}
 		}
 		el.innerHTML += "<br>";
