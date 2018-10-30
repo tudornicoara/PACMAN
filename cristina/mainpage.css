@@ -17,6 +17,15 @@ html {
 
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
 .button {
     display: flex;
     align-items: center;
@@ -61,6 +70,7 @@ html {
     opacity: 1;
     transition: 0s
 }
+
 
 /* MODAL  */
 
