@@ -4,6 +4,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    
   }
 
 
@@ -30,9 +31,9 @@ body{
     background-color: black;
     /* background-image: url(btn-bg.jpg); */
     border: none;
-    font-size: 25px;
+    font-size: 50px;
     color:  #fcb150;
-    padding: 20px;
+    padding: 50px;
     width: 400px;
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -48,6 +49,12 @@ body{
     
     
 }
+button:hover{
+    box-shadow: 3px 3px red, -1em 0 .4em olive;
+    -webkit-box-shadow: 43px -15px 117px 35px rgba(20,10,20,1);
+    -moz-box-shadow: 43px -15px 117px 35px rgba(20,10,20,1);
+
+} 
 
 .button:after {
     content: "";
@@ -69,27 +76,17 @@ body{
     transition: 0s
 }
 
-
-
-
-
-/* RESPONSIVE */
-
-/* change styles for cancel button and login button on extra small screens */
-@media screen and (max-width: 300px) {
-    .cancelbtn, .loginupbtn {
-       width: 100%;
+.blink {
+    animation: blinker 01s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
     }
-}
+  }
 
 
-/* @media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px){
-      .title{
-        margin: 0 auto;
-        text-align: center;
-        margin-top: 60%;
-      }
 
-} */
+
+/* pacman animation */
