@@ -2,8 +2,8 @@
     background-image: url(img/1.jpg);
     background-position: center;
     position: fixed;
-    max-width: 100%;
-    max-height:12%;
+    width: 100%;
+    max-height:80px;
     /* height: 12%; */
     top: 0;
     right:0;
