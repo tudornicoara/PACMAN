@@ -19,7 +19,7 @@
     font-size: 300%;
     color: #c90101;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
- 
+
 }
 
 /*
@@ -118,8 +118,61 @@ img {
     right:0;
     left:0;
     line-height: 0px;
+    opacity:0;
 }
 
 body {
     background: #B2ADAA;
+}
+
+
+@media screen and (max-width:1324px){
+    .top-bar #profi {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:792px){
+    .top-bar {
+        max-height:30%;
+    }
+
+    #profi {
+        display: none;
+    }
+
+    #logo {
+        margin:auto;
+    }
+
+    .top-bar #score {
+        margin:auto;
+        float: left;
+        margin-right:0px;
+        margin-top:-60px;
+    }
+
+}
+
+@media screen and (max-width:500px){
+    .top-bar {
+        max-height:40%;
+    }
+
+    #profi {
+        display: none;
+    }
+
+    #logo {
+        margin:auto;
+        width:100%;
+        display: inline-block;
+    }
+
+    #score {
+        margin:auto;
+        display: inline-block;
+    }
+
 }
