@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>  
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="raport2.css">
+</head> 
+<html property="http://scholarly-html.org/schtml">
+ <body>
+    
+    <div class="transparent-box">
+        <img role="doc-cover" src="../images/logo.png" alt="app_logo"/>
+    </div>
+        
+    <div class="container">
+        <h1>
+            <span itemprop="name" property="http://purl.org/dc/terms/title">Proiect DAWNC</span>
+        </h1> 
+        <h2>
+        <p itemprop="name">Creators</p>
+        </h2>
+            <ul>
+            <li>
+                <span property="http://purl.org/dc/terms/creator">Nicoara Tudor</span>
+            </li>
+            <li>
+                <span property="http://purl.org/dc/terms/creator">Burlacu Emil-Claudiu</span>
+            </li>
+            <li>
+                <span property="http://purl.org/dc/terms/creator">Piclea Cristina</span>
+            </li>
+            </ul>  
+
+
+        <h2>Abstract </h2>
+        <section role="doc-abstract" aria-label="Abstract">
+            <p>Aplicatia noastra intentioneaza sa imite jocul electronic PACMAN, avand drept harta reala a labirintului corpul C al Universitatii “Alexandru Ioan Cuza”. Oponentii sunt presonaje create de calculator  si/sau alte persoane participante in cadrul jocului. Utilizatorul uman va fi reprezentat pe baza imaginii profilului de Facebook. Pentru fiecare runda, sistemul va genera aleatoriu un labirint, in functie de nivelul jocului.  Vor fi oferite pilule energetice care vor contribui la marirea scorului. In cadrul labirintului vor aparea “fantome” care vor fi infatisate prin imagini ale profesorile/prietenilor din reteaua sociala la care este arondat jucatorul.
+            </p>
+        </section>
+
+        <section itemprop="about">
+            <h2>HTML5 Web Storage API</h2>
+            <p>Pentru stocarea datelor jucatorului vom folosi API-ul Web Storage, stocand astfel informatiile userului local, in browser. Prin aceasta metoda, putem stoca mai multe informatii decat daca am folosi cookie-uri, fara a afecta performanta aplicatiei.
+           </p>
+
+           <h2>Microdata</h2>
+           <p> Folosim HTML5 Microdata pentru a atribui fiecarui tag din HTML o proprietate din chema.org, care mai apoi poate fi folosita pentru facilita gasirea informatiilor de catre motoarele de cautare, web-crawlers.</p>
+
+            <h2>Etape intermediare ale dezvoltarii proiectului</h2>
+            <p>Folosim <a href="https://trello.com/b/AtwxYyHw/dawnc-project">Trello</a> pentru a distribui taskurile si pentru a ne monitoriza progresul individual si colectiv.
+            </p>
+
+        </section>
+        
+        <section role="doc-endnotes">
+            <h2>Codul sursa</h2>
+            <ul>
+            <li id="4" role="doc-endnote">Proiectul poate fi gasit <a href="https://github.com/tudornicoara/PACMAN">aici</a> </li>
+            </ul>
+        </section>
+                
+
+        <div class="date">
+            <span type=xsd:date>
+                <script> document.write(new Date().toLocaleDateString()); </script>
+            </span>
+        </div>  
+    
+    </div>
+
+    
+ 
+ </body>
+ </html>
