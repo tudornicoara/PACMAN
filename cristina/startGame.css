@@ -1,0 +1,92 @@
+html { 
+    background: url(background.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+  }
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.title{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: black;
+    /* background-image: url(btn-bg.jpg); */
+    border: none;
+    font-size: 50px;
+    color:  #fcb150;
+    padding: 50px;
+    width: 400px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    margin: auto;
+    font-family: "Comic Sans MS";
+    border: 3px solid  #fcb150;
+    border-radius: 20px;
+    vertical-align: 10%;
+    
+    
+}
+button:hover{
+    box-shadow: 3px 3px red, -1em 0 .4em olive;
+    -webkit-box-shadow: 43px -15px 117px 35px rgba(20,10,20,1);
+    -moz-box-shadow: 43px -15px 117px 35px rgba(20,10,20,1);
+
+} 
+
+.button:after {
+    content: "";
+    background: rgb(133, 93, 9);
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.blink {
+    animation: blinker 01s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+
+
+
+/* pacman animation */
