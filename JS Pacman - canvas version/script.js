@@ -9,7 +9,7 @@ window.onload=function() {
 	setInterval(game,1000/10);
 }
 
-// Load images
+/////// Load images //////
 
  var coin = new Image();
  var tile = new Image();
@@ -36,15 +36,14 @@ masalagiu.src = "profi/masalagiu.png";
 patrut.src = "profi/patrut.png";
 varlan.src = "profi/varlan.png";
 
-// Load audio
+/////// Load audio //////
 
 // var fly = new Audio();
 // var scor = new Audio();
-
 // fly.src = "sounds/fly.mp3";
 // scor.src = "sounds/score.mp3";
 
-// Global variables
+////// Global variables //////
 
 var xv = 0;
 var yv = 0;
@@ -74,9 +73,6 @@ var map = [
 ];
 
 // on key down
-
-//document.addEventListener("keydown",keyPush);
-
 function keyPush(evt) {
 	switch(evt.keyCode) {
 		case 37:
@@ -100,7 +96,6 @@ function stop(){
 }
 
 // Draw images
-
 // ctx.drawImage(imageName, X, Y, Width, Height);
 
 function game() {
@@ -112,7 +107,7 @@ function game() {
     if (yv == -1 && map[pacmanY-1][pacmanX]==1) stop();
     if (yv == 1 && map[pacmanY+1][pacmanX]==1) stop();
 
-    pacmanX += xv;     // ????? Nu stiu de ce sunt inversate ?????
+    pacmanX += xv;
     pacmanY += yv;
 
     // New Tile for pacman
@@ -138,12 +133,9 @@ function game() {
         
     }
     
-    
-     
-    
      //ctx.fillStyle = "#000";
      
-     requestAnimationFrame(draw);
+     requestAnimationFrame(game);
 }
 
-draw();
+game();
