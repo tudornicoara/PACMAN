@@ -92,7 +92,7 @@ function keyPush(evt) {
 
 function stop(){
     xv = 0;
-    yv = 0
+    yv = 0;
 }
 
 // Draw images
@@ -102,6 +102,8 @@ function game() {
     // Delete pacman from his old tile
     map[pacmanY][pacmanX] = 0;
 
+     
+    // Collisions
     if (xv == -1 && map[pacmanY][pacmanX-1]==1) stop();
     if (xv == 1 && map[pacmanY][pacmanX+1]==1) stop();
     if (yv == -1 && map[pacmanY-1][pacmanX]==1) stop();
