@@ -1,93 +1,137 @@
-pacman = {
-	x: 6,
-	y: 4
+var cvs = document.getElementById("canvas");
+var ctx = cvs.getContext("2d");
+
+window.onload=function() {
+    var cvs = document.getElementById("canvas");
+    var ctx = cvs.getContext("2d");
+	document.addEventListener("keydown",keyPush);
+	setInterval(game,1000/5);
 }
-map = [ 
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,2,2,1,2,2,1,2,2,1,2,2,2,1,2,2,2,2,2,2,1,2,2,1,9,1,2,1,2,1], 
-    [1,2,2,1,2,2,1,2,2,1,2,2,2,1,2,2,2,2,2,2,1,2,2,1,2,1,2,1,2,1], 
-    [1,1,2,1,2,2,1,2,1,1,2,2,2,1,2,2,2,2,2,2,1,2,2,1,2,2,2,2,2,1], 
-	[1,2,2,2,2,2,4,2,2,1,1,1,2,1,2,1,1,1,1,1,1,2,1,1,2,2,2,2,2,1], 
-	[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1], 
-	[1,2,2,2,2,2,2,2,2,1,1,2,1,1,1,1,1,1,2,1,1,2,2,1,1,1,1,1,1,1], 
-	[1,2,2,2,2,9,2,2,2,1,2,2,2,2,2,2,2,9,2,2,1,2,2,2,2,2,2,2,2,1],
-	[1,1,2,1,2,2,2,2,2,1,2,2,2,1,2,2,1,2,2,2,1,2,2,2,2,2,2,2,2,1], 
-	[1,2,2,1,2,2,2,2,2,1,2,2,2,1,6,5,1,2,2,2,1,2,2,2,2,2,2,2,2,1], 
-    [1,2,2,1,2,1,2,2,2,1,2,2,2,1,7,8,1,2,2,2,1,2,2,2,2,2,2,2,2,1],
-    [1,2,2,1,2,1,2,2,2,1,2,2,2,1,1,1,1,2,2,2,1,2,2,2,2,2,2,2,2,1],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-]
-var el = document.getElementById("world");
-console.log(el);
-function drawWorld(){
-	el.innerHTML = '';
-	for(var y = 0; y < map.length ; y = y + 1) {
-		for(var x = 0; x < map[y].length ; x = x + 1) {		
-			if (map[y][x] === 1) {
-				el.innerHTML += "<div class='wall'><img src='Sprites/wall.png'></div>";
-			}
-			else if (map[y][x] === 2) {
-				el.innerHTML += "<div class='coin'><img src='Sprites/coin.png'></div>";
-			}
-			else if (map[y][x] === 3) {
-				el.innerHTML += "<div class='ground'><img src='Sprites/tile.png'></div>";
-			}
-			else if (map[y][x] === 4) {
-				el.innerHTML += "<div class='pacman'><img src='Sprites/pacman.png'></div>";
-			}
-			else if (map[y][x] === 5) {
-				el.innerHTML += "<div class='ghost1'><img src='img/profi/ciobaca.png'></div>";
-			}
-			else if (map[y][x] === 6) {
-				el.innerHTML += "<div class='ghost2'><img src='img/profi/ferucio.png'></div>";
-			}
-			else if (map[y][x] === 7) {
-				el.innerHTML += "<div class='ghost3'><img src='img/profi/masalagiu.png'></div>";
-			}
-			else if (map[y][x] === 8) {
-				el.innerHTML += "<div class='ghost4'><img src='img/profi/iacob.png'></div>";
-			}
-            else if (map[y][x] === 9) {
-				el.innerHTML += "<div class='power-up'><img src='Sprites/fire.png'></div>";
-			}
-		}
-		el.innerHTML += "<br>";
+
+/////// Load images //////
+
+ var coin = new Image();
+ var tile = new Image();
+ var fire = new Image();
+ var pacman = new Image();
+ var wall = new Image();
+ coin.src = "images/coin.png";
+ tile.src = "images/tile.png";
+ fire.src = "images/fire.png";
+ pacman.src = "images/pacman.png";
+ wall.src = "images/wall.png";
+var amariei = new Image();
+var ciobaca = new Image();
+var ferucio = new Image();
+var iacob = new Image();
+var masalagiu = new Image();
+var patrut = new Image();
+var varlan = new Image();
+amariei.src = "profi/amariei.png";
+ciobaca.src = "profi/ciobaca.png";
+ferucio.src = "profi/ferucio.png";
+iacob.src = "profi/iacob.png";
+masalagiu.src = "profi/masalagiu.png";
+patrut.src = "profi/patrut.png";
+varlan.src = "profi/varlan.png";
+
+/////// Load audio ///////
+
+// var fly = new Audio();
+// var scor = new Audio();
+// fly.src = "sounds/fly.mp3";
+// scor.src = "sounds/score.mp3";
+
+////// Global variables /////
+
+var xv = 0;
+var yv = 0;
+pacmanY = 7;
+pacmanX = 5;
+tileSize = 40;
+lines = 15;
+columns = 30;
+
+
+var map = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 0, 11, 12, 13, 14, 15, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 0, 16, 17, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+];
+
+// on key down
+
+function keyPush(evt) {
+	switch(evt.keyCode) {
+		case 37:
+			xv=-1;yv=0;
+			break;
+		case 38:
+			xv=0;yv=-1;
+			break;
+		case 39:
+			xv=1;yv=0;
+			break;
+		case 40:
+			xv=0;yv=1;
+			break;
 	}
 }
-drawWorld();
-document.onkeydown = function(event){
-	console.log(event);
-	if (event.keyCode === 37){ // PACMAN MOVE LEFT
-		if ( map[pacman.y][pacman.x-1] !== 1){
-			map[pacman.y][pacman.x] = 3;
-			pacman.x = pacman.x - 1;
-			map[pacman.y][pacman.x] = 4;
-			drawWorld();
-		}
-	}
-	else if (event.keyCode === 38){ // PACMAN MOVE UP
-		if ( map[pacman.y-1][pacman.x] !== 1){
-			map[pacman.y][pacman.x] = 3;
-			pacman.y = pacman.y - 1;
-			map[pacman.y][pacman.x] = 4;
-			drawWorld();
-		}
-	}
-	else if (event.keyCode === 39){ // PACMAN MOVE RIGHT
-		if ( map[pacman.y][pacman.x+1] !== 1){
-			map[pacman.y][pacman.x] = 3;
-			pacman.x = pacman.x + 1;
-			map[pacman.y][pacman.x] = 4;
-			drawWorld();
-		}
-	}
-	else if (event.keyCode === 40){ // PACMAN MOVE DOWN
-		if ( map[pacman.y+1][pacman.x] !== 1){
-			map[pacman.y][pacman.x] = 3;
-			pacman.y = pacman.y + 1;
-			map[pacman.y][pacman.x] = 4;
-			drawWorld();
-		}
-	}
-	console.log(map)
+
+function stop(){
+    xv = 0;
+    yv = 0;
+}
+
+// Draw images
+// ctx.drawImage(imageName, X, Y, Width, Height);
+
+function game() {
+    // Delete pacman from his old tile
+    map[pacmanY][pacmanX] = 0;
+
+    // Collisions
+    if (xv == -1 && map[pacmanY][pacmanX-1]==1) stop();
+    if (xv == 1 && map[pacmanY][pacmanX+1]==1) stop();
+    if (yv == -1 && map[pacmanY-1][pacmanX]==1) stop();
+    if (yv == 1 && map[pacmanY+1][pacmanX]==1) stop();
+
+    pacmanX += xv;
+    pacmanY += yv;
+
+    // New Tile for pacman
+    map[pacmanY][pacmanX] = 5;
+
+    for(var i = 0; i < lines; i++)
+    {
+        for(var j = 0; j < columns; j++)
+        {
+            if (map[i][j] == 0) ctx.drawImage(tile, j*40, i*40, tileSize, tileSize);
+            else if (map[i][j] == 1) ctx.drawImage(wall, j*40, i*40, tileSize, tileSize);
+            else if (map[i][j] == 2) ctx.drawImage(coin, j*40, i*40, tileSize, tileSize);
+            else if (map[i][j] == 3) ctx.drawImage(fire, j*40, i*40, tileSize, tileSize);
+            else if (map[i][j] == 5) ctx.drawImage(pacman, j*40, i*40, tileSize, tileSize);
+            else if (map[i][j] == 11) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(amariei, j*40, i*40, tileSize, tileSize);}
+            else if (map[i][j] == 12) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(ciobaca, j*40, i*40, tileSize, tileSize);}
+            else if (map[i][j] == 13) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(ferucio, j*40, i*40, tileSize, tileSize);}
+            else if (map[i][j] == 14) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(iacob, j*40, i*40, tileSize, tileSize);}
+            else if (map[i][j] == 15) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(masalagiu, j*40, i*40, tileSize, tileSize);}
+            else if (map[i][j] == 16) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(patrut, j*40, i*40, tileSize, tileSize);}
+            else if (map[i][j] == 17) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(varlan, j*40, i*40, tileSize, tileSize);}
+        }
+        
+    }
+     
 }
