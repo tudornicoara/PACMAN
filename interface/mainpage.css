@@ -1,10 +1,10 @@
 html { 
-    background: url(images/background_pacman.png) no-repeat center center fixed; 
+    background: url(background.gif) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+  }
 
 
 .title{
@@ -13,11 +13,11 @@ html {
     margin-top: 10%;
     
     /* outline-color: aquamarine; */
+    
+
 }
 
-
 body{
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,13 +26,8 @@ body{
     min-height: 100vh;
 }
 
-a{
-    text-decoration: none;
-}
-
-#login {
-    /* display: flex; */
-    /* display: flex; */
+.button {
+    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -53,34 +48,8 @@ a{
     font-family: "Comic Sans MS";
     border: 3px solid  #fcb150;
     border-radius: 20px;
+    
 }
-
-#start {
-    /* display: none; */
-    /* display: none; */
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: black;
-    /* background-image: url(btn-bg.jpg); */
-    border: none;
-    font-size: 50px;
-    color:  #fcb150;
-    padding: 50px;
-    width: 400px;
-    text-align: center;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
-    margin: auto;
-    font-family: "Comic Sans MS";
-    border: 3px solid  #fcb150;
-    border-radius: 20px;
-    vertical-align: 10%;
-}
-
 
 .button:after {
     content: "";
@@ -95,7 +64,6 @@ a{
     transition: all 0.8s
 }
 
-
 .button:active:after {
     padding: 0;
     margin: 0;
@@ -103,52 +71,14 @@ a{
     transition: 0s
 }
 
-.startGameButton:hover{
-    box-shadow: 3px 3px red, -1em 0 .4em olive;
-    -webkit-box-shadow: 43px -15px 117px 35px rgba(20,10,20,1);
-    -moz-box-shadow: 43px -15px 117px 35px rgba(20,10,20,1);
-} 
-
-.startGameButton:after {
-    content: "";
-    background: rgb(133, 93, 9);
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-}
-
-.startGameButton:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-}
-
-.blink {
-    animation: blinker 01s linear infinite;
-}
-  
-@keyframes blinker {
-    50% {
-      opacity: 0;
-    }
-}
-
 
 /* MODAL  */
-
 
 h1{
     text-shadow: -1px 0 black, 0 3px black, 3px 0 black, 0 -1px black;
     color: #fcb150;
     font-family: "Comic Sans MS";
 }
-
 
 /* input fields */
 input[type=text], input[type=password] {
@@ -264,19 +194,13 @@ hr {
 /* Portrait Galaxy */
 @media screen and (min-width: 360px) {
    img{
-       margin-top: -12%;
-       width: 100%;
-       height: 100%;
+       width: 80%;
    }
 
-   html{
-       background-position-y: 50%;
-   }
    .modal-content{
        width: 50%;
    }
    h1{
-      margin-top: 20%;
       font-size: 1.5em;
    }
 
@@ -284,21 +208,13 @@ hr {
 
 /* iphone */
 @media screen and (min-width: 320px) {
-    img{
-        margin-top: -12%;
-        width: 100%;
-        height: 100%;
-    }
- 
-    html{
-        background-position-y: 50%;
-    }
-    .modal-content{
-        width: 50%;
-    }
-    h1{
-       margin-top: 20%;
-       font-size: 1.5em;
+    input[type=text], input[type=password] {
+        width: 85%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
     }
  
  }

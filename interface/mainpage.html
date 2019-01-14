@@ -13,18 +13,15 @@
 
 <body>
     <div class="container">
-        <div id="title" class="title">
+        <div class="title">
           <img src="logo.png"  alt="logo" width="800" height="180">
         </div>
-        <div class="blink">
-          <a href="pacman.html"><button id="start" class="startGameButton" style="width:auto;">START GAME</button></a>
-        </div>
-        <button id="login" class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">LOGIN WITH FACEBOOK</button>
+        <button class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">LOGIN WITH FACEBOOK</button>
     </div>
 
     <div id="id01" class="modal">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <form id="id02" class="modal-content">
+      <form class="modal-content" action="/action_page.php">
         <div class="container">
           <h1>LOGIN WITH FACEBOOK</h1>
           <hr>
@@ -41,7 +38,7 @@
     
           <div class="clearfix">
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button id="login-button" type="button" class="loginbtn">LOGIN</button>
+            <button type="submit" class="loginbtn">LOGIN</button>
           </div>
         </div>
       </form>
@@ -66,6 +63,6 @@
         }
     }
     </script>
-  <script src="script.js"></script>
+
 </body>
 </html>

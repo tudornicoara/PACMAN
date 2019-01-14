@@ -1,13 +1,13 @@
 var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
+var span = document.getElementById("scor");
 
 window.onload=function() {
     var cvs = document.getElementById("canvas");
     var ctx = cvs.getContext("2d");
 	document.addEventListener("keydown",keyPush);
-	setInterval(game,1000/5);
+    setInterval(game,1000/5);
 }
-
 /////// Load images //////
 
  var coin = new Image();
@@ -44,55 +44,80 @@ varlan.src = "profi/varlan.png";
 
 ////// Global variables /////
 
-var xv = 0;
-var yv = 0;
+var xVelocity = 0;
+var yVelocity = 0;
 pacmanY = 7;
 pacmanX = 5;
-tileSize = 40;
+tileSize = cvs.width/30;
 lines = 15;
 columns = 30;
-
+var score = 0;
+var teacherArray = generate4Numbers();
 
 var map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 0, 11, 12, 13, 14, 15, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 0, 16, 17, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+    [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 0, 0, 0, 0, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
+
+console.log(teacherArray);
+
+//////// Putting teachers on map ///////
+function createTeachers(){
+    for (var i = 0; i < 4; i++)
+        if (map[10][14+i] == 0) map[10][14+i] = teacherArray[i];
+}
+createTeachers();
+
+///////// Selecting random teachers ///////
+function generateRandomNumber(min , max) {
+        return Math.floor(Math.random() * (max-min) + min) ;
+    }
+function generate4Numbers(){
+    array2 = []
+    array = [1,2,3,4,5,6,7]
+    for(var i = 0; i < 4; i++){
+        n = generateRandomNumber(0 , array.length);
+        array2.push(array[n] + 10)
+        array.splice(n,1)
+    }
+    return array2;
+}
 
 // on key down
 
 function keyPush(evt) {
 	switch(evt.keyCode) {
 		case 37:
-			xv=-1;yv=0;
+			xVelocity=-1;yVelocity=0;
 			break;
 		case 38:
-			xv=0;yv=-1;
+			xVelocity=0;yVelocity=-1;
 			break;
 		case 39:
-			xv=1;yv=0;
+			xVelocity=1;yVelocity=0;
 			break;
 		case 40:
-			xv=0;yv=1;
+			xVelocity=0;yVelocity=1;
 			break;
 	}
 }
 
 function stop(){
-    xv = 0;
-    yv = 0;
+    xVelocity = 0;
+    yVelocity = 0;
 }
 
 // Draw images
@@ -103,14 +128,18 @@ function game() {
     map[pacmanY][pacmanX] = 0;
 
     // Collisions
-    if (xv == -1 && map[pacmanY][pacmanX-1]==1) stop();
-    if (xv == 1 && map[pacmanY][pacmanX+1]==1) stop();
-    if (yv == -1 && map[pacmanY-1][pacmanX]==1) stop();
-    if (yv == 1 && map[pacmanY+1][pacmanX]==1) stop();
+    if (xVelocity == -1 && map[pacmanY][pacmanX-1]==1) stop();
+    if (xVelocity == 1 && map[pacmanY][pacmanX+1]==1) stop();
+    if (yVelocity == -1 && map[pacmanY-1][pacmanX]==1) stop();
+    if (yVelocity == 1 && map[pacmanY+1][pacmanX]==1) stop();
 
-    pacmanX += xv;
-    pacmanY += yv;
+    pacmanX += xVelocity;
+    pacmanY += yVelocity;
 
+    if (map[pacmanY][pacmanX]==2){
+         score++;
+         span.innerHTML = score;
+    }
     // New Tile for pacman
     map[pacmanY][pacmanX] = 5;
 
@@ -118,20 +147,94 @@ function game() {
     {
         for(var j = 0; j < columns; j++)
         {
-            if (map[i][j] == 0) ctx.drawImage(tile, j*40, i*40, tileSize, tileSize);
-            else if (map[i][j] == 1) ctx.drawImage(wall, j*40, i*40, tileSize, tileSize);
-            else if (map[i][j] == 2) ctx.drawImage(coin, j*40, i*40, tileSize, tileSize);
-            else if (map[i][j] == 3) ctx.drawImage(fire, j*40, i*40, tileSize, tileSize);
-            else if (map[i][j] == 5) ctx.drawImage(pacman, j*40, i*40, tileSize, tileSize);
-            else if (map[i][j] == 11) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(amariei, j*40, i*40, tileSize, tileSize);}
-            else if (map[i][j] == 12) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(ciobaca, j*40, i*40, tileSize, tileSize);}
-            else if (map[i][j] == 13) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(ferucio, j*40, i*40, tileSize, tileSize);}
-            else if (map[i][j] == 14) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(iacob, j*40, i*40, tileSize, tileSize);}
-            else if (map[i][j] == 15) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(masalagiu, j*40, i*40, tileSize, tileSize);}
-            else if (map[i][j] == 16) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(patrut, j*40, i*40, tileSize, tileSize);}
-            else if (map[i][j] == 17) {ctx.drawImage(tile, j*40, i*40, tileSize, tileSize); ctx.drawImage(varlan, j*40, i*40, tileSize, tileSize);}
+            // Drawing elements
+            if (map[i][j] == 0) ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize);
+            else if (map[i][j] == 1) ctx.drawImage(wall, j*tileSize, i*tileSize, tileSize, tileSize);
+            else if (map[i][j] == 2) ctx.drawImage(coin, j*tileSize, i*tileSize, tileSize, tileSize);
+            else if (map[i][j] == 3) ctx.drawImage(fire, j*tileSize, i*tileSize, tileSize, tileSize);
+            else if (map[i][j] == 5) ctx.drawImage(pacman, j*tileSize, i*tileSize, tileSize, tileSize);
+            else if (map[i][j] == 11) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(amariei, j*tileSize, i*tileSize, tileSize, tileSize);}
+            else if (map[i][j] == 12) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ciobaca, j*tileSize, i*tileSize, tileSize, tileSize);}
+            else if (map[i][j] == 13) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ferucio, j*tileSize, i*tileSize, tileSize, tileSize);}
+            else if (map[i][j] == 14) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(iacob, j*tileSize, i*tileSize, tileSize, tileSize);}
+            else if (map[i][j] == 15) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(masalagiu, j*tileSize, i*tileSize, tileSize, tileSize);}
+            else if (map[i][j] == 16) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(patrut, j*tileSize, i*tileSize, tileSize, tileSize);}
+            else if (map[i][j] == 17) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(varlan, j*tileSize, i*tileSize, tileSize, tileSize);}
         }
         
     }
-     
+
+    /////////////// Teacher AI ///////////////////
+    for(var i = 0; i < lines; i++){
+        for(var j = 0; j < columns; j++){
+            if (map[i][j] > 10){
+                var teacher = map[i][j];
+                // If is teacher
+                var z = 0;
+                var found = 0;
+                // Search right
+                while(map[i+z][j])
+                {
+                    if (map[i+z][j] == 1) break;
+                    if (map[i+z][j] == 5){
+                        if(map[i+1][j] == 0 || map[i+1][j] == 2){map[i][j] = 0; map[i+1][j] = teacher;}
+                        found = 1;
+                    }
+                    z++;
+                }
+                z = 0;
+                // Search down
+                while(map[i][j+z])
+                {
+                    if (map[i][j+z] == 1) break;
+                    if (map[i][j+z] == 5){
+                        if (map[i][j+1] == 0 || map[i][j+1] == 2){map[i][j] = 0; map[i][j+1] = teacher;}
+                        found = 1;
+                    }
+                    z++;
+                }
+                z = 0;
+                // Search left
+                while(map[i-z][j])
+                {
+                    if (map[i-z][j] == 1) break;
+                    if (map[i-z][j] == 5){
+                        if(map[i-1][j] == 0 || map[i-1][j] == 2) {map[i][j] = 0; map[i-1][j] = teacher;}
+                        found = 1;
+                    }
+                    z++;
+                }
+                z = 0;
+                // Search up
+                while(map[i][j-z])
+                {
+                    if (map[i][j-z] == 1) break;
+                    if (map[i][j-z] == 5){
+                        if(map[i][j-1] == 0 || map[i][j-1] == 2) {map[i][j] = 0; map[i][j-1] = teacher;}
+                        found = 1;
+                    }
+                    z++;
+                }
+                if(found == 0){
+                    direction = generateRandomNumber(0,4);
+                    switch(direction){
+                        case 0: // up
+                            if(map[i][j-1] == 0 || map[i][j-1] == 2) {map[i][j] = 0; map[i][j-1] = teacher;}
+                            break;
+                        case 1: // down
+                            if (map[i][j+1] == 0 || map[i][j+1] == 2){map[i][j] = 0; map[i][j+1] = teacher;}
+                            break;
+                        case 2: // left
+                            if(map[i-1][j] == 0 || map[i-1][j] == 2) {map[i][j] = 0; map[i-1][j] = teacher;}
+                            break;
+                        case 3: // right
+                            if(map[i+1][j] == 0 || map[i+1][j] == 2){map[i][j] = 0; map[i+1][j] = teacher;}
+                            break;
+                        default:
+                            break;
+                    }       
+                }
+            }
+        }
+    }
 }
