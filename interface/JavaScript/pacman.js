@@ -234,7 +234,7 @@ function game() {
                 }
                 z = 0;
                 // Search down
-                while(map[i][j+z])
+                while(map[i][j+z] && found == 0)
                 {
                     if (map[i][j+z] == 1) break;
                     if (map[i][j+z] == 5){
@@ -275,7 +275,7 @@ function game() {
                 }
                 z = 0;
                 // Search left
-                while(map[i-z][j])
+                while(map[i-z][j] && found == 0)
                 {
                     if (map[i-z][j] == 1) break;
                     if (map[i-z][j] == 5){
@@ -316,7 +316,7 @@ function game() {
                 }
                 z = 0;
                 // Search up
-                while(map[i][j-z])
+                while(map[i][j-z] && found == 0)
                 {
                     if (map[i][j-z] == 1) break;
                     if (map[i][j-z] == 5){
