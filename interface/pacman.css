@@ -613,7 +613,7 @@ body {
   }
 
 .modal_content {
-    background-image: url(pacman_x.png) ;
+    background-image: url(Sprites/pacman_x.png) ;
     background-repeat: no-repeat;
     background-position-x: 10%;
     background-position-y: 50%;
