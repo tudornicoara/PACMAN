@@ -20,13 +20,29 @@
                 <p>Score: <span id="scor">0</span></p>
             </section>
 
+
         </div>
         
         <div id="world">
-            <canvas id="canvas" width="1200" height="600"></canvas>
+            <canvas id="canvas" width="1200" height="600"  style="z-index:0;"></canvas>
         </div>
         
+        <div class="modal" id="modal">
+                <div class="modal_bkg">
+                    <div class="modal_content">
+                        <h1>GAME OVER</h1>
+                        <div class="blink">
+                            <a href="startGame.html"><h2> Retry</h2></a>
+                            <a href="startGame.html"><h2> Logout</h2></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
         <script src="JavaScript/pacman.js"></script>
+
+        
+
     </body>
 
 </html>

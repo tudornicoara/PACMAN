@@ -578,3 +578,88 @@ body {
         height:5%;
     }
 }
+
+
+
+
+
+/* GAME OVER popup */
+
+.modal {
+    z-index: 1;
+    /* position: fixed; */
+    opacity: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transform: scale(1.1);
+    /* visibility: hidden; */
+ 
+}
+
+.modal_bkg{
+    background-color: black;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+
+.modal_content {
+    background-image: url(pacman_x.png) ;
+    background-repeat: no-repeat;
+    background-position-x: 10%;
+    background-position-y: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color:rgb(255, 255, 255);
+    padding: 1rem 1.5rem;
+    width: 20%;
+    border-radius: 0.8rem;
+    transform: translate(-50%, -50%);
+
+}
+
+
+.show_modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+}
+
+h1, h2{
+    z-index: 1;
+    margin-top: 9%;
+    text-align: center;
+    margin-left: 20%;
+}
+
+
+h2{
+    margin-top: -6%;
+    color:rgb(102, 0, 0);
+    font-weight: bolder;
+}
+
+a{
+    text-decoration: none;
+
+}
+.blink {
+    animation: blinker 01s linear infinite;
+}
+  
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
