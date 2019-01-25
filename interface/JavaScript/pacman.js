@@ -44,11 +44,6 @@ varlan.src = "profi/varlan.png";
 
 ////// Global variables /////
 
-var teacher1 = {'number' : 0, 'tile' : 2}
-var teacher2 = {'number' : 0, 'tile' : 2}
-var teacher3 = {'number' : 0, 'tile' : 2}
-var teacher4 = {'number' : 0, 'tile' : 2}
-
 var xVelocity = 0;
 var yVelocity = 0;
 pacmanY = 7;
@@ -58,6 +53,28 @@ lines = 15;
 columns = 30;
 var score = 0;
 var teacherArray = generate4Numbers();
+
+
+
+// -----------------
+
+
+// GAME OVER MODAL
+
+var modal = document.getElementById("modal");
+// var modal = document.querySelector(".modal");
+var modal_trigger = document.querySelector(".modal_trigger");
+var modal_close_button = document.querySelector(".modal_close_button");
+
+function toggleModal() {
+    modal.classList.toggle("modal");
+}
+
+function gameOver() {
+    toggleModal();
+    window.stop();
+}
+
 
 var map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -77,26 +94,12 @@ var map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
+console.log(teacherArray);
+
 //////// Putting teachers on map ///////
 function createTeachers(){
     for (var i = 0; i < 4; i++)
-        if (map[10][14+i] == 0) {
-            map[10][14+i] = teacherArray[i];
-            switch(i){
-                case 0:
-                    teacher1.number = teacherArray[i];
-                    break;
-                case 1:
-                    teacher2.number = teacherArray[i];
-                    break;
-                case 2:
-                    teacher3.number = teacherArray[i];
-                    break;
-                case 3:
-                    teacher4.number = teacherArray[i];
-                    break;
-            }
-        }
+        if (map[10][14+i] == 0) map[10][14+i] = teacherArray[i];
 }
 createTeachers();
 
@@ -104,7 +107,6 @@ createTeachers();
 function generateRandomNumber(min , max) {
         return Math.floor(Math.random() * (max-min) + min) ;
     }
-
 function generate4Numbers(){
     array2 = []
     array = [1,2,3,4,5,6,7]
@@ -116,7 +118,7 @@ function generate4Numbers(){
     return array2;
 }
 
-// On key down
+// on key down
 
 function keyPush(evt) {
 	switch(evt.keyCode) {
@@ -148,10 +150,10 @@ function game() {
     map[pacmanY][pacmanX] = 0;
 
     // Collisions
-    if (xVelocity == -1 && (map[pacmanY][pacmanX-1] == 1 || map[pacmanY][pacmanX-1] > 10)) stop();
-    if (xVelocity == 1 && (map[pacmanY][pacmanX+1] == 1 || map[pacmanY][pacmanX+1] > 10)) stop();
-    if (yVelocity == -1 && (map[pacmanY-1][pacmanX] == 1 || map[pacmanY-1][pacmanX] > 10)) stop();
-    if (yVelocity == 1 && (map[pacmanY+1][pacmanX] == 1 || map[pacmanY+1][pacmanX] > 10)) stop();
+    if (xVelocity == -1 && map[pacmanY][pacmanX-1]==1) stop();
+    if (xVelocity == 1 && map[pacmanY][pacmanX+1]==1) stop();
+    if (yVelocity == -1 && map[pacmanY-1][pacmanX]==1) stop();
+    if (yVelocity == 1 && map[pacmanY+1][pacmanX]==1) stop();
 
     pacmanX += xVelocity;
     pacmanY += yVelocity;
@@ -160,6 +162,12 @@ function game() {
          score++;
          span.innerHTML = score;
     }
+
+    // GameOver at pacman-ghost collision
+    if (map[pacmanY][pacmanX]>=11){
+        gameOver();     
+   }
+
     // New Tile for pacman
     map[pacmanY][pacmanX] = 5;
 
@@ -193,275 +201,62 @@ function game() {
                 var z = 0;
                 var found = 0;
                 // Search right
-                while(map[i+z][j] && found == 0)
+                while(map[i+z][j])
                 {
                     if (map[i+z][j] == 1) break;
                     if (map[i+z][j] == 5){
-                        if(map[i+1][j] == 0 || map[i+1][j] == 2 || map[i+1][j] == 3){
-                            switch(teacher){
-                                case teacher1.number:
-                                    map[i][j] = teacher1.tile;
-                                    teacher1.tile = map[i+1][j];
-                                    map[i+1][j] = teacher;
-                                    break;
-                                case teacher2.number:
-                                    map[i][j] = teacher2.tile;
-                                    teacher2.tile = map[i+1][j];
-                                    map[i+1][j] = teacher;
-                                    break;
-                                case teacher3.number:
-                                    map[i][j] = teacher3.tile;
-                                    teacher3.tile = map[i+1][j];
-                                    map[i+1][j] = teacher;
-                                    break;
-                                case teacher4.number:
-                                    map[i][j] = teacher4.tile;
-                                    teacher4.tile = map[i+1][j];
-                                    map[i+1][j] = teacher;
-                                    break;
-                            }
-                        }
-                        // Eat pacman
-                        if(map[i+1][j] == 5){
-                            map[i][j] == 0;
-                            map[i+1][j] = teacher;
-                            pacmanX = -1;
-                            pacmanY = -1;
-                        }
+                        if(map[i+1][j] == 0 || map[i+1][j] == 2){map[i][j] = 0; map[i+1][j] = teacher;}
                         found = 1;
                     }
                     z++;
                 }
                 z = 0;
                 // Search down
-                while(map[i][j+z] && found == 0)
+                while(map[i][j+z])
                 {
                     if (map[i][j+z] == 1) break;
                     if (map[i][j+z] == 5){
-                        if (map[i][j+1] == 0 || map[i][j+1] == 2 || map[i][j+1] == 3){
-                            switch(teacher){
-                                case teacher1.number:
-                                    map[i][j] = teacher1.tile;
-                                    teacher1.tile = map[i][j+1];
-                                    map[i][j+1] = teacher;
-                                    break;
-                                case teacher2.number:
-                                    map[i][j] = teacher2.tile;
-                                    teacher2.tile = map[i][j+1];
-                                    map[i][j+1] = teacher;
-                                    break;
-                                case teacher3.number:
-                                    map[i][j] = teacher3.tile;
-                                    teacher3.tile = map[i][j+1];
-                                    map[i][j+1] = teacher;
-                                    break;
-                                case teacher4.number:
-                                    map[i][j] = teacher4.tile;
-                                    teacher4.tile = map[i][j+1];
-                                    map[i][j+1] = teacher;
-                                    break;
-                        }
-                    }
-                    // Eat pacman
-                    if (map[i][j+1] == 5){
-                        map[i][j] = 0;
-                        map[i][j+1] = teacher;
-                        pacmanX = -1;
-                        pacmanY = -1;
-                    }
-                    found = 1;
+                        if (map[i][j+1] == 0 || map[i][j+1] == 2){map[i][j] = 0; map[i][j+1] = teacher;}
+                        found = 1;
                     }
                     z++;
                 }
                 z = 0;
                 // Search left
-                while(map[i-z][j] && found == 0)
+                while(map[i-z][j])
                 {
                     if (map[i-z][j] == 1) break;
                     if (map[i-z][j] == 5){
-                        if(map[i-1][j] == 0 || map[i-1][j] == 2 || map[i-1][j] == 3) {
-                            switch(teacher){
-                                case teacher1.number:
-                                    map[i][j] = teacher1.tile;
-                                    teacher1.tile = map[i-1][j];
-                                    map[i-1][j] = teacher;
-                                    break;
-                                case teacher2.number:
-                                    map[i][j] = teacher2.tile;
-                                    teacher2.tile = map[i-1][j];
-                                    map[i-1][j] = teacher;
-                                    break;
-                                case teacher3.number:
-                                    map[i][j] = teacher3.tile;
-                                    teacher3.tile = map[i-1][j];
-                                    map[i-1][j] = teacher;
-                                    break;
-                                case teacher4.number:
-                                    map[i][j] = teacher4.tile;
-                                    teacher4.tile = map[i-1][j];
-                                    map[i-1][j] = teacher;
-                                    break;
-                            }
-                        }
-                        // Eat pacman
-                        if(map[i-1][j] == 5){
-                            map[i][j] = 0;
-                            map[i-1][j] = teacher;
-                            pacmanX = -1;
-                            pacmanY = -1;
-                        }
+                        if(map[i-1][j] == 0 || map[i-1][j] == 2) {map[i][j] = 0; map[i-1][j] = teacher;}
                         found = 1;
                     }
                     z++;
                 }
                 z = 0;
                 // Search up
-                while(map[i][j-z] && found == 0)
+                while(map[i][j-z])
                 {
                     if (map[i][j-z] == 1) break;
                     if (map[i][j-z] == 5){
-                        if(map[i][j-1] == 0 || map[i][j-1] == 2 || map[i][j-1] == 3) {
-                            switch(teacher){
-                                case teacher1.number:
-                                    map[i][j] = teacher1.tile;
-                                    teacher1.tile = map[i][j-1];
-                                    map[i][j-1] = teacher;
-                                    break;
-                                case teacher2.number:
-                                    map[i][j] = teacher2.tile;
-                                    teacher2.tile = map[i][j-1];
-                                    map[i][j-1] = teacher;
-                                    break;
-                                case teacher3.number:
-                                    map[i][j] = teacher3.tile;
-                                    teacher3.tile = map[i][j-1];
-                                    map[i][j-1] = teacher;
-                                    break;
-                                case teacher4.number:
-                                    map[i][j] = teacher4.tile;
-                                    teacher4.tile = map[i][j-1];
-                                    map[i][j-1] = teacher;
-                                    break;
-                            }
-                        }
-                        // Eat pacman
-                        if(map[i][j-1] == 5){
-                            map[i][j] = 0;
-                            map[i][j-1] = teacher;
-                            pacmanX = -1;
-                            pacmanY = -1;
-                        }
+                        if(map[i][j-1] == 0 || map[i][j-1] == 2) {map[i][j] = 0; map[i][j-1] = teacher;}
                         found = 1;
                     }
                     z++;
                 }
-                // If teacher doesn't see pacman
                 if(found == 0){
                     direction = generateRandomNumber(0,4);
                     switch(direction){
                         case 0: // up
-                            if(map[i][j-1] == 0 || map[i][j-1] == 2 || map[i][j-1] == 3) {
-                                switch(teacher){
-                                    case teacher1.number:
-                                        map[i][j] = teacher1.tile;
-                                        teacher1.tile = map[i][j-1];
-                                        map[i][j-1] = teacher;
-                                        break;
-                                    case teacher2.number:
-                                        map[i][j] = teacher2.tile;
-                                        teacher2.tile = map[i][j-1];
-                                        map[i][j-1] = teacher;
-                                        break;
-                                    case teacher3.number:
-                                        map[i][j] = teacher3.tile;
-                                        teacher3.tile = map[i][j-1];
-                                        map[i][j-1] = teacher;
-                                        break;
-                                    case teacher4.number:
-                                        map[i][j] = teacher4.tile;
-                                        teacher4.tile = map[i][j-1];
-                                        map[i][j-1] = teacher;
-                                        break;
-                                }
-                            }
+                            if(map[i][j-1] == 0 || map[i][j-1] == 2) {map[i][j] = 0; map[i][j-1] = teacher;}
                             break;
                         case 1: // down
-                            if (map[i][j+1] == 0 || map[i][j+1] == 2 || map[i][j+1] == 3){
-                                switch(teacher){
-                                    case teacher1.number:
-                                        map[i][j] = teacher1.tile;
-                                        teacher1.tile = map[i][j+1];
-                                        map[i][j+1] = teacher;
-                                        break;
-                                    case teacher2.number:
-                                        map[i][j] = teacher2.tile;
-                                        teacher2.tile = map[i][j+1];
-                                        map[i][j+1] = teacher;
-                                        break;
-                                    case teacher3.number:
-                                        map[i][j] = teacher3.tile;
-                                        teacher3.tile = map[i][j+1];
-                                        map[i][j+1] = teacher;
-                                        break;
-                                    case teacher4.number:
-                                        map[i][j] = teacher4.tile;
-                                        teacher4.tile = map[i][j+1];
-                                        map[i][j+1] = teacher;
-                                        break;
-                                }
-                            }
+                            if (map[i][j+1] == 0 || map[i][j+1] == 2){map[i][j] = 0; map[i][j+1] = teacher;}
                             break;
                         case 2: // left
-                            if(map[i-1][j] == 0 || map[i-1][j] == 2 || map[i-1][j] == 3) {
-                                switch(teacher){
-                                    case teacher1.number:
-                                        map[i][j] = teacher1.tile;
-                                        teacher1.tile = map[i-1][j];
-                                        map[i-1][j] = teacher;
-                                        break;
-                                    case teacher2.number:
-                                        map[i][j] = teacher2.tile;
-                                        teacher2.tile = map[i-1][j];
-                                        map[i-1][j] = teacher;
-                                        break;
-                                    case teacher3.number:
-                                        map[i][j] = teacher3.tile;
-                                        teacher3.tile = map[i-1][j];
-                                        map[i-1][j] = teacher;
-                                        break;
-                                    case teacher4.number:
-                                        map[i][j] = teacher4.tile;
-                                        teacher4.tile = map[i-1][j];
-                                        map[i-1][j] = teacher;
-                                        break;
-                                }
-                            }
+                            if(map[i-1][j] == 0 || map[i-1][j] == 2) {map[i][j] = 0; map[i-1][j] = teacher;}
                             break;
                         case 3: // right
-                            if(map[i+1][j] == 0 || map[i+1][j] == 2 || map[i+1][j] == 3){
-                                switch(teacher){
-                                    case teacher1.number:
-                                        map[i][j] = teacher1.tile;
-                                        teacher1.tile = map[i+1][j];
-                                        map[i+1][j] = teacher;
-                                        break;
-                                    case teacher2.number:
-                                        map[i][j] = teacher2.tile;
-                                        teacher2.tile = map[i+1][j];
-                                        map[i+1][j] = teacher;
-                                        break;
-                                    case teacher3.number:
-                                        map[i][j] = teacher3.tile;
-                                        teacher3.tile = map[i+1][j];
-                                        map[i+1][j] = teacher;
-                                        break;
-                                    case teacher4.number:
-                                        map[i][j] = teacher4.tile;
-                                        teacher4.tile = map[i+1][j];
-                                        map[i+1][j] = teacher;
-                                        break;
-                                }
-                            }
+                            if(map[i+1][j] == 0 || map[i+1][j] == 2){map[i][j] = 0; map[i+1][j] = teacher;}
                             break;
                         default:
                             break;
@@ -470,5 +265,6 @@ function game() {
             }
         }
     }
-    
 }
+
+
