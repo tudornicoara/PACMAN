@@ -33,10 +33,6 @@ blue    -  #50c3fc
     margin-right:15px;
 }
 
-body {
-    background: #B2ADAA;
-}
-
 #world {
     position: fixed;
     line-height:0;

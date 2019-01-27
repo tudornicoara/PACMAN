@@ -3,69 +3,78 @@
 <head>
   <meta charset="utf-8">
 
-  <title>PACMAN</title>
- 
-
+  <title>UAIC-MAN</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="mainpage.css" type="text/css">
+  <link rel="stylesheet" href="pacman.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
-    <div class="container">
-        <div class="title">
-          <img src="logo.png"  alt="logo" width="800" height="180">
+    <div id="title-screen" class="container">
+        <div id="title" class="title">
+          <img id="logo" src="logo.png"  alt="logo" width="800" height="180">
         </div>
-        <div class="blink">
-          <a href="pacman.html"><button class="startGameButton" style="width:auto;">START GAME</button></a>
+        <div id="start" class="blink">
+          <button class="startGameButton" style="width:auto;">START GAME</button>
         </div>
-        <button class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">LOGIN WITH FACEBOOK</button>
+        <button id='login' class="button" style="width:auto;">LOGIN WITH FACEBOOK</button>
     </div>
 
-    <div id="id01" class="modal">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <form class="modal-content" action="/action_page.php">
-        <div class="container">
-          <h1>LOGIN WITH FACEBOOK</h1>
-          <hr>
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" id="email" required > 
+
+    <div id="game">
+        <div class="top-bar">
+          <header>
+              <img id="logo" src="img/logo.png" alt="UAIC-MAN">  
+              <img id="profi" src="img/top-bar2.png" alt="Pacman profi">
+          </header>
+
+          <section id="score">
+              <p>Score: <span id="scor">0</span></p>
+          </section>
+      </div>
+
     
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <div id="world">
+        <canvas id="canvas" width="1200" height="600"  style="z-index:0;"></canvas>
+      </div>
     
-          <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-          </label>
-    
-    
-          <div class="clearfix">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="submit" class="loginbtn">LOGIN</button>
+
+      <div class="modal" id="modal">
+          <div class="modal_bkg">
+              <div class="modal_content">
+                  <h1>GAME OVER</h1>
+                  <div class="blink">
+                      <a href="startGame.html"><h2> Retry</h2></a>
+                      <a href="startGame.html"><h2> Logout</h2></a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </form>
+      </div>
     </div>
 
-    
-        
-    
-              
 
-
-  <!-- <script src="js/scripts.js"></script> -->
-
-  <script>
-    // get the modal
-    var modal = document.getElementById('id01');
-    
-    // close the modal when the user clicks anywhere outside it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyD4EsYEpFwZ8f3cba3CNU9s-HNHZ4qvhPU",
+        authDomain: "crested-primacy-215418.firebaseapp.com",
+        databaseURL: "https://crested-primacy-215418.firebaseio.com",
+        projectId: "crested-primacy-215418",
+        storageBucket: "crested-primacy-215418.appspot.com",
+        messagingSenderId: "104004252876"
+      };
+      firebase.initializeApp(config);
     </script>
+    <script src="script.js"></script>
+    <script src="JavaScript/pacman.js"></script>
 
+
+
+
+
+  
 </body>
 </html>

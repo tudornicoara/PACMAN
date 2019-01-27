@@ -1,13 +1,20 @@
-var cvs = document.getElementById("canvas");
-var ctx = cvs.getContext("2d");
-var span = document.getElementById("scor");
-
-window.onload=function() {
+document.getElementById("start").addEventListener("click", function(){
+    document.getElementById("title-screen").style.display = 'none';
+    document.getElementById("login").style.display = 'none';
+    document.getElementById("start").style.display = 'none';
+    document.getElementById("title").style.display = "none";
+    document.getElementById("game").style.display = 'block';
+    document.body.style.background = '#B2ADAA'
     var cvs = document.getElementById("canvas");
     var ctx = cvs.getContext("2d");
 	document.addEventListener("keydown",keyPush);
     setInterval(game,1000/5);
-}
+})
+
+
+var cvs = document.getElementById("canvas");
+var ctx = cvs.getContext("2d");
+var span = document.getElementById("scor");
 /////// Load images //////
 
  var coin = new Image();

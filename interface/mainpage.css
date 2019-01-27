@@ -263,7 +263,7 @@ hr {
 
 /* Portrait Galaxy */
 @media screen and (min-width: 360px) {
-   img{
+   #logo{
        margin-top: -12%;
        width: 100%;
        height: 100%;
@@ -284,7 +284,7 @@ hr {
 
 /* iphone */
 @media screen and (min-width: 320px) {
-    img{
+    #logo{
         margin-top: -12%;
         width: 100%;
         height: 100%;
