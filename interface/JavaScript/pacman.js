@@ -65,6 +65,7 @@ lines = 15;
 columns = 30;
 var score = 0;
 var teacherArray = generate4Numbers();
+var isAlive = 1;
 
 
 
@@ -183,8 +184,10 @@ function game() {
     if (yVelocity == -1 && map[pacmanY-1][pacmanX]==1) stop();
     if (yVelocity == 1 && map[pacmanY+1][pacmanX]==1) stop();
 
-    pacmanX += xVelocity;
-    pacmanY += yVelocity;
+    if (isAlive == 1){
+        pacmanX += xVelocity;
+        pacmanY += yVelocity;
+    }
 
     if (map[pacmanY][pacmanX]==2){
          score++;
@@ -197,7 +200,9 @@ function game() {
    }
 
     // New Tile for pacman
-    map[pacmanY][pacmanX] = 5;
+    if (isAlive == 1){
+        map[pacmanY][pacmanX] = 5;
+    }
 
     for(var i = 0; i < lines; i++)
     {
@@ -208,7 +213,7 @@ function game() {
             else if (map[i][j] == 1) ctx.drawImage(wall, j*tileSize, i*tileSize, tileSize, tileSize);
             else if (map[i][j] == 2) ctx.drawImage(coin, j*tileSize, i*tileSize, tileSize, tileSize);
             else if (map[i][j] == 3) ctx.drawImage(fire, j*tileSize, i*tileSize, tileSize, tileSize);
-            else if (map[i][j] == 5) ctx.drawImage(pacman, j*tileSize, i*tileSize, tileSize, tileSize);
+            else if (map[i][j] == 5) if (isAlive == 0) {map[i][j] = 0; ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize);} else {ctx.drawImage(pacman, j*tileSize, i*tileSize, tileSize, tileSize);}
             else if (map[i][j] == 11) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(amariei, j*tileSize, i*tileSize, tileSize, tileSize);}
             else if (map[i][j] == 12) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ciobaca, j*tileSize, i*tileSize, tileSize, tileSize);}
             else if (map[i][j] == 13) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ferucio, j*tileSize, i*tileSize, tileSize, tileSize);}
@@ -261,8 +266,8 @@ function game() {
                         if(map[i+1][j] == 5){
                             map[i][j] == 0;
                             map[i+1][j] = teacher;
-                            pacmanX = -1;
-                            pacmanY = -1;
+                            isAlive = 0;
+                            gameOver(); 
                         }
                         found = 1;
                     }
@@ -302,8 +307,8 @@ function game() {
                     if (map[i][j+1] == 5){
                         map[i][j] = 0;
                         map[i][j+1] = teacher;
-                        pacmanX = -1;
-                        pacmanY = -1;
+                        isAlive = 0;
+                        gameOver(); 
                     }
                     found = 1;
                     }
@@ -343,8 +348,8 @@ function game() {
                         if(map[i-1][j] == 5){
                             map[i][j] = 0;
                             map[i-1][j] = teacher;
-                            pacmanX = -1;
-                            pacmanY = -1;
+                            isAlive = 0;
+                            gameOver(); 
                         }
                         found = 1;
                     }
@@ -384,8 +389,8 @@ function game() {
                         if(map[i][j-1] == 5){
                             map[i][j] = 0;
                             map[i][j-1] = teacher;
-                            pacmanX = -1;
-                            pacmanY = -1;
+                            isAlive = 0;
+                            gameOver(); 
                         }
                         found = 1;
                     }
