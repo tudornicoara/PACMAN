@@ -695,19 +695,45 @@ blue    -  #50c3fc
     transform: scale(1.0);
 }
 
+
 h1, h2{
     z-index: 1;
-    margin-top: 9%;
+    /* margin-top: 9%; */
     text-align: center;
-    margin-left: 20%;
+    margin-left: 7%;
+    padding: none;
+    border-radius: 4px;
+    padding: 0px 0px;
+    display: inline;
+    
 }
 
+button{
+    background-color: rgba(182, 103, 51, 0.781);
+    padding: none;
+    display: inline;
+    border-radius: 4px;
+}
+
+
+/* h1{
+    font-size: 35px;
+    margin-left: 0%;
+}
 
 h2{
-    margin-top: -6%;
-    color:rgb(102, 0, 0);
+    color:white;
     font-weight: bolder;
+    margin-left: 0%;
+} */
+
+
+
+.btnRetry, .btnLogout{
+    width: 60%;
+    margin-left: 27%;
 }
+
 
 a{
     text-decoration: none;
