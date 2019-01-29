@@ -167,6 +167,7 @@ function keyPush(evt) {
 			xVelocity=0;yVelocity=1;
             break;
         case 80:
+            alert("PAUSE");
             startGame = 0;
             break;
 	}
