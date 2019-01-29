@@ -1,3 +1,4 @@
+
 document.getElementById("start").addEventListener("click", function(){
     document.getElementById("title-screen").style.display = 'none';
     document.getElementById("login").style.display = 'none';
@@ -66,7 +67,8 @@ columns = 30;
 var score = 0;
 var teacherArray = generate4Numbers();
 var isAlive = 1;
-
+var startGame = 0;
+var boost = 0;
 
 
 // -----------------
@@ -107,7 +109,7 @@ var map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
-console.log(teacherArray);
+// console.log(teacherArray);
 
 //////// Putting teachers on map ///////
 function createTeachers(){
@@ -150,6 +152,7 @@ function generate4Numbers(){
 // on key down
 
 function keyPush(evt) {
+    startGame = 1;
 	switch(evt.keyCode) {
 		case 37:
 			xVelocity=-1;yVelocity=0;
@@ -162,7 +165,10 @@ function keyPush(evt) {
 			break;
 		case 40:
 			xVelocity=0;yVelocity=1;
-			break;
+            break;
+        case 80:
+            startGame = 0;
+            break;
 	}
 }
 
@@ -170,61 +176,55 @@ function stop(){
     xVelocity = 0;
     yVelocity = 0;
 }
+function drawElements(){
+    for(var i = 0; i < lines; i++)
+        {
+            for(var j = 0; j < columns; j++)
+            {
+                // Drawing elements
+                if (map[i][j] == 0) ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize);
+                else if (map[i][j] == 1) ctx.drawImage(wall, j*tileSize, i*tileSize, tileSize, tileSize);
+                else if (map[i][j] == 2) ctx.drawImage(coin, j*tileSize, i*tileSize, tileSize, tileSize);
+                else if (map[i][j] == 3) ctx.drawImage(fire, j*tileSize, i*tileSize, tileSize, tileSize);
+                else if (map[i][j] == 5) if (isAlive == 0) {map[i][j] = 0; ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize);} else {ctx.drawImage(pacman, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 11) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(amariei, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 12) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ciobaca, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 13) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ferucio, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 14) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(iacob, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 15) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(masalagiu, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 16) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(patrut, j*tileSize, i*tileSize, tileSize, tileSize);}
+                else if (map[i][j] == 17) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(varlan, j*tileSize, i*tileSize, tileSize, tileSize);}
+            }
+            
+        }
+    }
 
-// Draw images
-// ctx.drawImage(imageName, X, Y, Width, Height);
-
-function game() {
-    // Delete pacman from his old tile
-    map[pacmanY][pacmanX] = 0;
-
+function checkCollisions(){
     // Collisions
     if (xVelocity == -1 && map[pacmanY][pacmanX-1]==1) stop();
     if (xVelocity == 1 && map[pacmanY][pacmanX+1]==1) stop();
     if (yVelocity == -1 && map[pacmanY-1][pacmanX]==1) stop();
     if (yVelocity == 1 && map[pacmanY+1][pacmanX]==1) stop();
+}
 
+function movePacman(){
     if (isAlive == 1){
         pacmanX += xVelocity;
         pacmanY += yVelocity;
     }
+}
 
-    if (map[pacmanY][pacmanX]==2){
-         score++;
-         span.innerHTML = score;
-    }
-
-    // GameOver at pacman-ghost collision
-    if (map[pacmanY][pacmanX]>=11){
-        gameOver();     
+function increaseScore(){
+    if (map[pacmanY][pacmanX] == 2){
+        score++;
+        span.innerHTML = score;
    }
+   if (map[pacmanY][pacmanX] == 3){
+        boost = 20;
+   }
+}
 
-    // New Tile for pacman
-    if (isAlive == 1){
-        map[pacmanY][pacmanX] = 5;
-    }
-
-    for(var i = 0; i < lines; i++)
-    {
-        for(var j = 0; j < columns; j++)
-        {
-            // Drawing elements
-            if (map[i][j] == 0) ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize);
-            else if (map[i][j] == 1) ctx.drawImage(wall, j*tileSize, i*tileSize, tileSize, tileSize);
-            else if (map[i][j] == 2) ctx.drawImage(coin, j*tileSize, i*tileSize, tileSize, tileSize);
-            else if (map[i][j] == 3) ctx.drawImage(fire, j*tileSize, i*tileSize, tileSize, tileSize);
-            else if (map[i][j] == 5) if (isAlive == 0) {map[i][j] = 0; ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize);} else {ctx.drawImage(pacman, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 11) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(amariei, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 12) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ciobaca, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 13) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(ferucio, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 14) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(iacob, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 15) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(masalagiu, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 16) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(patrut, j*tileSize, i*tileSize, tileSize, tileSize);}
-            else if (map[i][j] == 17) {ctx.drawImage(tile, j*tileSize, i*tileSize, tileSize, tileSize); ctx.drawImage(varlan, j*tileSize, i*tileSize, tileSize, tileSize);}
-        }
-        
-    }
-
+function teacherAI(){
     /////////////// Teacher AI ///////////////////
     for(var i = 0; i < lines; i++){
         for(var j = 0; j < columns; j++){
@@ -511,5 +511,39 @@ function game() {
             }
         }
     }
-    
+}
+
+// Draw images
+// ctx.drawImage(imageName, X, Y, Width, Height);
+
+
+////////////////////////////////////////////////////////////////// GAME RUN ////////////////////////////////////////////////////////////////////////
+function game() {
+    if (startGame == 0) drawElements();
+    if(startGame == 1){
+        // Delete pacman from his old tile
+        map[pacmanY][pacmanX] = 0;
+
+        checkCollisions();
+
+        movePacman();
+
+        increaseScore();
+
+        // GameOver at pacman-ghost collision
+        if (map[pacmanY][pacmanX]>=11){
+            gameOver();     
+    }
+
+        // New Tile for pacman
+        if (isAlive == 1){
+            map[pacmanY][pacmanX] = 5;
+        }
+
+        drawElements();
+        
+        if(boost == 0)
+            teacherAI();
+        else boost --;
+    }
 }
