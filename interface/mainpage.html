@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
 
-  <title>UAIC-MAN</title>
+  <area title="UAIC-MAN"> </area>
+  <title itemprop="name">UAIC-MAN</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="mainpage.css" type="text/css">
   <link rel="stylesheet" href="pacman.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
-
+ 
 <body>
     <div id="title-screen" class="container">
         <div id="title" class="title">
-          <img id="logo" src="logo.png"  alt="logo" width="800" height="180">
+          <img id="logo" itemprop="url" src="logo.png"  alt="logo" width="800" height="180">
         </div>
         <div id="start" class="blink">
           <button class="startGameButton" style="width:auto;">START GAME</button>
@@ -23,17 +24,17 @@
     </div>
 
 
-    <div id="game">
-        <div class="top-bar">
-          <header>
-              <img id="logo" src="img/logo.png" alt="UAIC-MAN">  
-              <img id="profi" src="img/top-bar2.png" alt="Pacman profi">
-          </header>
+    <div id="game" role="main" itemscope itemprop="mainContentOfPage">
+        <div class="top-bar" >
+            <header role="banner" itemscope itemtype="http://schema.org/WPHeader">
+                <img id="logo" itemprop="url" src="img/logo.png" alt="UAIC-MAN">  
+                <img id="profi" itemprop="url" src="img/top-bar2.png" alt="Pacman profi">
+            </header>
 
-          <section id="score">
-              <p>Score: <span id="scor">0</span></p>
-          </section>
-      </div>
+            <section id="score">
+                <p>Score: <span id="scor">0</span></p>
+            </section>
+        </div>
 
     
       <div id="world">
@@ -41,17 +42,18 @@
       </div>
     
 
-      <div class="modal" id="modal">
-        <div class="modal_bkg">
-            <div class="modal_content">
-                <h1>GAME OVER</h1>
-                <div class="blink">
-                    <button class="btnRetry"  onclick="window.location.href='startGame.html'"><h2> Retry</h2></button>
-                    <button class="btnLogout" onclick="window.location.href='startGame.html'"><h2> Logout</h2></button>
+        <div class="modal" id="modal">
+            <div class="modal_bkg">
+                <div class="modal_content">
+                    <h1>GAME OVER</h1>
+                    <div class="blink">
+                        <button class="btnRetry" itemprop="url" onclick="window.location.href='startGame.html'" ><h2> Retry</h2></button>
+                        <button class="btnLogout" itemprop="url"  onclick="window.location.href='startGame.html'"><h2> Logout</h2></button>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
+
     </div>
 
 
