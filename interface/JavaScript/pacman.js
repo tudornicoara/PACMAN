@@ -1,9 +1,13 @@
-
 document.getElementById("start").addEventListener("click", function(){
+    var provider = new firebase.auth.FacebookAuthProvider();
+    // firebase.auth().signOut().then(function() {
+    //     console.log('Signed Out');
+    //   })
     document.getElementById("title-screen").style.display = 'none';
     document.getElementById("login").style.display = 'none';
     document.getElementById("start").style.display = 'none';
     document.getElementById("title").style.display = "none";
+    pacman.src = localStorage.getItem("PhotoUrl")
     document.getElementById("game").style.display = 'block';
     document.body.style.background = '#B2ADAA'
     var cvs = document.getElementById("canvas");
@@ -26,7 +30,6 @@ var span = document.getElementById("scor");
  coin.src = "images/coin.png";
  tile.src = "images/tile.png";
  fire.src = "images/fire.png";
- pacman.src = "images/pacman.png";
  wall.src = "images/wall.png";
 var amariei = new Image();
 var ciobaca = new Image();
@@ -67,8 +70,7 @@ columns = 30;
 var score = 0;
 var teacherArray = generate4Numbers();
 var isAlive = 1;
-var startGame = 0;
-var boost = 0;
+
 
 
 // -----------------
@@ -109,7 +111,7 @@ var map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
-// console.log(teacherArray);
+//console.log(teacherArray);
 
 //////// Putting teachers on map ///////
 function createTeachers(){
