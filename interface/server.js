@@ -137,6 +137,12 @@ http.createServer(function(req, response) {
                     response.end(data, 'binary')
             });
             break;
+        case '/Sprites/pacman_x.png':
+            fs.readFile('./Sprites/pacman_x.png', function (err, data) {
+                    response.writeHead(200, { 'Content-Type': 'image/png' });
+                    response.end(data, 'binary')
+            });
+            break;
         default:
             console.log(myUrl.pathname)
             break
