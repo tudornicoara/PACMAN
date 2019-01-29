@@ -36,3 +36,30 @@ document.getElementById("login").addEventListener("click", function() {
       });
       document.getElementById("start").style.display = 'flex';
 });
+
+
+document.getElementById("retry").addEventListener("click", function(){
+    var modal = document.getElementById("modal");
+    modal.classList.toggle("modal");
+    document.getElementById("game").style.display= 'none';
+    document.getElementById("title-screen").style.display='inline';
+    document.getElementById("start").style.display = 'flex';
+    document.getElementById("login").style.display = 'none';
+    document.body.style.background = 'none';
+    restart();
+
+});
+
+
+document.getElementById("logout").addEventListener("click", function(){
+    var modal = document.getElementById("modal");
+    modal.classList.toggle("modal");
+    localStorage.clear();
+    document.getElementById("game").style.display= 'none';
+    document.getElementById("title-screen").style.display='inline';
+    document.getElementById("start").style.display = 'none';
+    document.getElementById("login").style.display = 'flex';
+    document.body.style.background = 'none';
+    restart();
+
+});

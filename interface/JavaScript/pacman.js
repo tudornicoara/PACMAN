@@ -6,17 +6,14 @@ document.getElementById("start").addEventListener("click", function(){
     document.getElementById("title-screen").style.display = 'none';
     document.getElementById("login").style.display = 'none';
     document.getElementById("start").style.display = 'none';
-    document.getElementById("title").style.display = "none";
     pacman.src = localStorage.getItem("PhotoUrl")
     document.getElementById("game").style.display = 'block';
     document.body.style.background = '#B2ADAA'
-    var cvs = document.getElementById("canvas");
-    var ctx = cvs.getContext("2d");
 	document.addEventListener("keydown",keyPush);
-    setInterval(game,1000/5);
+    // interval = setInterval(game,1000/5);
 })
 
-
+var interval = setInterval(game,1000/5);
 var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
 var span = document.getElementById("scor");
@@ -81,8 +78,8 @@ var isAlive = 1;
 
 var modal = document.getElementById("modal");
 // var modal = document.querySelector(".modal");
-var modal_trigger = document.querySelector(".modal_trigger");
-var modal_close_button = document.querySelector(".modal_close_button");
+// var modal_trigger = document.querySelector(".modal_trigger");
+
 
 function toggleModal() {
     modal.classList.toggle("modal");
@@ -90,9 +87,34 @@ function toggleModal() {
 
 function gameOver() {
     toggleModal();
-    window.stop();
+    clearInterval(interval)
+    interval = setInterval(game,1000/5);
 }
 
+function copyMatrix(matrix1, matrix2, n){
+    for(var i = 0; i < n; i++){
+        matrix2[i] = matrix1[i].slice();
+    }
+
+}
+
+var start_map = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+    [1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+    [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 0, 0, 0, 0, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+];
 
 var map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -102,7 +124,7 @@ var map = [
     [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 1],
     [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 1],
     [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
     [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
     [1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 0, 0, 0, 0, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1],
@@ -136,6 +158,20 @@ function createTeachers(){
         }
 }
 createTeachers();
+
+function restart(){
+    copyMatrix(start_map, map, lines);
+    // map = start_map
+    stop()
+    score = 0;
+    span.innerHTML = score;
+    pacmanY = 7;
+    pacmanX = 5;
+    map[pacmanY][pacmanX] = 5;
+    startGame = 0;
+    isAlive = 1;
+    createTeachers();
+}
 
 ///////// Selecting random teachers ///////
 function generateRandomNumber(min , max) {
