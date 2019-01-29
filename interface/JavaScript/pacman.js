@@ -59,7 +59,8 @@ var teacher1 = {'number' : 0, 'tile' : 2}
 var teacher2 = {'number' : 0, 'tile' : 2}
 var teacher3 = {'number' : 0, 'tile' : 2}
 var teacher4 = {'number' : 0, 'tile' : 2}
-
+var startGame = 0;
+var boost = 0;
 var xVelocity = 0;
 var yVelocity = 0;
 pacmanY = 7;
