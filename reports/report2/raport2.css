@@ -6,20 +6,17 @@ img{
     margin-top: 2%;
 }
 
-/* h2, ul, section, span{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+p{
+    margin-top: -1%;
+}
+
+
+h4{
     text-align: center;
-    
-    font-family: 'Times New Roman', Times, serif;
-} */
+}
 
-
-
-h1, h2{
-    margin-bottom: 2%;
+h1{
+    margin-bottom: 12%;
     color: rgb(49, 30, 2);
     margin-top: 3%;
     margin-left: auto;
@@ -34,24 +31,21 @@ h2{
 }
 
 li{
-    list-style-type: none;
-}
-
-p, li, .date{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    margin-left: 0;
 }
 
 html{
-    background-image: url("../images/raport_bck.jpg");
+    background-image: url("../images/background_pacman.png");
     opacity: 50%;
+    background-size: 100%;
+    background-repeat: repeat-y;
+    /* overflow: hidden; */
 }
 
 
 ul>img{
-    width: 70%;
-    filter: sepia(80%);
+    width: 100%;
+    /* filter: sepia(80%); */
 
 }
 
@@ -65,12 +59,14 @@ ul>img{
     padding-bottom: 5%;
     padding-left: 5%;
     padding-right: 5%;
+
 }
 
 .date{
     margin-top: 15%;
     margin-bottom: -6%;
     font-weight: bold;
+    text-align: center;
 }
 
 .transparent-box{
@@ -78,3 +74,4 @@ ul>img{
   font-weight: bold;
   color: #000000;
 }
+

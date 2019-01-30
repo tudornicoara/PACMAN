@@ -11,51 +11,119 @@
     </div>
         
     <div class="container">
+        <h4> Faculty of Computer Science - Alexandru Ioan Cuza University Iasi</h4>
         <h1>
-            <span itemprop="name" property="http://purl.org/dc/terms/title">Proiect DAWNC</span>
+            <p itemprop="name" property="http://purl.org/dc/terms/title">Proiect DAWNC</p>
         </h1> 
         <h2>
-        <p itemprop="name">Creators</p>
+            <p itemprop="name">Team members</p>
         </h2>
-            <ul>
-            <li>
-                <span property="http://purl.org/dc/terms/creator">Nicoara Tudor</span>
-            </li>
-            <li>
-                <span property="http://purl.org/dc/terms/creator">Burlacu Emil-Claudiu</span>
-            </li>
-            <li>
-                <span property="http://purl.org/dc/terms/creator">Piclea Cristina</span>
-            </li>
-            </ul>  
 
+        <p property="http://purl.org/dc/terms/creator">Nicoara Tudor</p>
+        <p property="http://purl.org/dc/terms/creator">Burlacu Emil-Claudiu</p>
+        <p property="http://purl.org/dc/terms/creator">Piclea Cristina</p>
+        <p> English Group - 3rd year</p>
 
-        <h2>Abstract </h2>
+        <h2>Table of contents</h2>
+        <ol>
+            <li> Abstract</li>
+            <li> Project description</li>
+            <li> Functionalities</li>
+            <li> Technologies</li>
+            <li> Development</li>
+            <li> References</li>
+        </ol> 
+
         <section role="doc-abstract" aria-label="Abstract">
-            <p>Aplicatia noastra intentioneaza sa imite jocul electronic PACMAN, avand drept harta reala a labirintului corpul C al Universitatii “Alexandru Ioan Cuza”. Oponentii sunt presonaje create de calculator  si/sau alte persoane participante in cadrul jocului. Utilizatorul uman va fi reprezentat pe baza imaginii profilului de Facebook. Pentru fiecare runda, sistemul va genera aleatoriu un labirint, in functie de nivelul jocului.  Vor fi oferite pilule energetice care vor contribui la marirea scorului. In cadrul labirintului vor aparea “fantome” care vor fi infatisate prin imagini ale profesorile/prietenilor din reteaua sociala la care este arondat jucatorul.
+            <h2>1. Abstract </h2>
+            <p>
+                This page represents the architecture and the documentation of our web application that is further described in the following sections. It contains the functionalities, the usecases and some diagrams meant to show the guidelines that we want to follow in order to implement our application. The technologies used are presented at the 4th point of this page.
             </p>
         </section>
+
+        
+        <section itemprop="description">
+            <h2> 2. Project description</h2>
+            <p> Our application's aim is to create a pacman experience of our faculty (Faculty of Computer Science - Iasi). The opponents are characters created by the computer. The user will be represented based on his Facebook profile image. For every level of the game a new map will be rendered, spanning through a number of floors in the faculty. There will be offered coins and powerups in order to increase the score. In the map, there will be present some "ghosts" that will represent the teachers of the user. </p>
+        </section>
+
+        <section itemprop="functionalities">
+            <h2> 3. Functionalities</h2>
+            <h3> User's Usecases</h3>
+            <ul>
+                <li> when the user enters the application, the login page will appear;</li>
+                <li> after clicking the -login with facebook- button a popup provided with Firebase will appear;</li>
+                <li> the user enters his/her credentials and then manages or not to login;</li>
+                <li> after the login phase, the user is redirected to the Start Game page, where he/she has to click the -Start Game- button in order to continue;</li>
+                <li> after clicking the -Start Game- button, the user is redirected to the first level of the game;</li>
+                <li> if the user wins the current level, he/she will be prompted with a popup from which he/she can choose to go to the next level or to logout from the application;</li>
+                <li> if the user loses the game, he/she will be prompted with a GameOver message and with the possibilites to retry playing or logging out from the application;</li>
+                <li> when the user reaches the final level, he/she will be prompted with a congratulations message and the possibilites to retry the game or to logout from the application;</li>
+
+                <img src="../images/user-usecase.png">
+                <h4><a href="https://drive.google.com/file/d/1bCx3-KXea86l0IcCdMMM9XUpH3JLaQeP/view?usp=sharing">Link catre diagrama usecase</a></h4>
+            </ul>
+
+            <h3>Single Page Application</h3>
+                <p> This is a Single Page Application, as it is loads a single HTML page and then dynamically updates it as the user interacts with it.</p>
+
+        </section>
+
+
+
+
 
         <section itemprop="about">
-            <h2>HTML5 Web Storage API</h2>
-            <p>Pentru stocarea datelor jucatorului vom folosi API-ul Web Storage, stocand astfel informatiile userului local, in browser. Prin aceasta metoda, putem stoca mai multe informatii decat daca am folosi cookie-uri, fara a afecta performanta aplicatiei.
-           </p>
+            <h2> 4. Technologies</h2>
+                <h3>Microdata</h3>
+                    <p>
+                        HTML5 Microdata is used by pairing the element tags with a specific HTML attribute meant to embed machine-readable data in our document. The search engines, browsers and web-crawlers will extract the microdata, all to provide a rich browsing experience for the users.
+                    </p>
+                <h3> Web Storage</h3>
+                    <p> 
+                        The credentials provided by the user are stored in localStorage, keeping in this way the user's data in the browser in the eventuality that he/she will want to remain logged in, in order to play the game. In this way, we can store more information rather than using cookies, without affecting the application's performance.
+                    </p>
+                <h3> HTML, CSS & JS</h3>
+                    <p>
+                        HTML, CSS and JS are used for implementing the design and the game core of our application.
+                    </p>
+                <h3> Firebase authenication</h3>
+                <p>
+                    Because our application needs to know the identity of the user to provide a customized experience, Firebase was used.
+                </p>
 
-           <h2>Microdata</h2>
-           <p> Folosim HTML5 Microdata pentru a atribui fiecarui tag din HTML o proprietate din chema.org, care mai apoi poate fi folosita pentru facilita gasirea informatiilor de catre motoarele de cautare, web-crawlers.</p>
+                <h3> Node.js</h3>
+                    <p>
+                        Node.js is used for the server part. The server sends the entire page and after that, it won't need a network connection to make the most of the functionalities provided.
+                    </p>
 
-            <h2>Etape intermediare ale dezvoltarii proiectului</h2>
-            <p>Folosim <a href="https://trello.com/b/AtwxYyHw/dawnc-project">Trello</a> pentru a distribui taskurile si pentru a ne monitoriza progresul individual si colectiv.
-            </p>
+                
 
+        </section>
+
+        <section itemprop="development">
+                <h2>5. Development</h2>
+                <ul>
+                    <li id="4" role="doc-endnote">Link to the project's source code <a href="https://github.com/tudornicoara/PACMAN">here</a></li>
+                </ul>
+        </section>
+
+        <section role="references">
+                <h2> 6. References</h2>
+                <ul>
+                    <li>
+                        <a href="https://www.firebase.com/docs/web/guide/user-auth.html">Firebase</a>
+                    </li>
+                    <li>
+                        <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/"> DAWNC web page</a>
+                    </li>
+                    <li>
+                        <a href="http://singlepageappbook.com/goal.html">SPA</a>
+                    </li>
+                </ul>   
         </section>
         
-        <section role="doc-endnotes">
-            <h2>Codul sursa</h2>
-            <ul>
-            <li id="4" role="doc-endnote">Proiectul poate fi gasit <a href="https://github.com/tudornicoara/PACMAN">aici</a> </li>
-            </ul>
-        </section>
+
                 
 
         <div class="date">
@@ -65,6 +133,7 @@
         </div>  
     
     </div>
+    
 
     
  
