@@ -421,13 +421,15 @@ function movePacman(){
 }
 
 function increaseScore(){
-    if (map[pacmanY][pacmanX] == 2){
-        score++;
-        span.innerHTML = score;
-   }
-   if (map[pacmanY][pacmanX] == 3){
-        boost = 20;
-   }
+    if(isAlive == 1){
+        if (map[pacmanY][pacmanX] == 2){
+            score++;
+            span.innerHTML = score;
+        }
+        if (map[pacmanY][pacmanX] == 3){
+                boost = 20;
+        }
+    }
 }
 
 function teacherAI(){
@@ -439,7 +441,7 @@ function teacherAI(){
                 // If is teacher
                 var z = 0;
                 var found = 0;
-                // Search right
+                // Search down
                 while(map[i+z][j] && found == 0)
                 {
                     if (map[i+z][j] == 1) break;
@@ -480,7 +482,7 @@ function teacherAI(){
                     z++;
                 }
                 z = 0;
-                // Search down
+                // Search right
                 while(map[i][j+z] && found == 0)
                 {
                     if (map[i][j+z] == 1) break;
@@ -521,7 +523,7 @@ function teacherAI(){
                     z++;
                 }
                 z = 0;
-                // Search left
+                // Search up
                 while(map[i-z][j] && found == 0)
                 {
                     if (map[i-z][j] == 1) break;
@@ -562,7 +564,7 @@ function teacherAI(){
                     z++;
                 }
                 z = 0;
-                // Search up
+                // Search left
                 while(map[i][j-z] && found == 0)
                 {
                     if (map[i][j-z] == 1) break;
@@ -602,6 +604,7 @@ function teacherAI(){
                     }
                     z++;
                 }
+                z = 0;
                 // If teacher doesn't see pacman
                 if(found == 0){
                     direction = generateRandomNumber(0,4);
@@ -749,6 +752,7 @@ function changeLevel(){
             break;
     }
     level++;
+    isAlive = 1;
 }
 
 // Draw images
@@ -760,12 +764,14 @@ function game() {
     if (LevelCompleted()){
         if(level <7) toggleLvlModal()
         if(level == 7) toggleWinModal()
+        isAlive = 0;
     }
 
     if (startGame == 0) drawElements();
     if(startGame == 1){
         // Delete pacman from his old tile
-        map[pacmanY][pacmanX] = 0;
+        if (isAlive == 1)
+            map[pacmanY][pacmanX] = 0;
 
         checkCollisions();
 
@@ -774,9 +780,9 @@ function game() {
         increaseScore();
 
         // GameOver at pacman-ghost collision
-        if (map[pacmanY][pacmanX]>=11){
-            gameOver();     
-    }
+    //     if (map[pacmanY][pacmanX]>=11){
+    //         gameOver();     
+    // }
 
         // New Tile for pacman
         if (isAlive == 1){
@@ -812,10 +818,10 @@ document.getElementById("logoutNl").addEventListener("click", function(){
 });
 
 document.getElementById("nextLvl").addEventListener("click", function(){
-        changeLevel();
-        createTeachers();
         toggleLvlModal()
         document.getElementById("level_complete").style.display='none';
+        changeLevel();
+        createTeachers();
 });
 
 
