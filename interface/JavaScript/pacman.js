@@ -252,11 +252,13 @@ function gameOver() {
 
 var level_complete = document.getElementById("level_complete");
 function toggleLvlModal(){
+    document.getElementById("level_complete").style.display = 'block'
     level_complete.classList.toggle("level_complete");
 }
 
 var win = document.getElementById("win");
 function toggleWinModal(){
+    document.getElementById("win").style.display = 'block'
     win.classList.toggle("win");
 }
 
@@ -369,7 +371,7 @@ function keyPush(evt) {
 }
 
 function cheat(){
-    if(level!=7)
+    if(level<=7)
         for(var i = 0; i < lines; i++)
             for(var j = 0; j < columns; j++){
                 if (map[i][j] == 2) map[i][j] = 0;
