@@ -39,7 +39,7 @@ document.getElementById("login").addEventListener("click", function() {
 
 
 document.getElementById("retry").addEventListener("click", function(){
-    var modal = document.getElementById("modal");
+    // var modal = document.getElementById("modal");
     modal.classList.toggle("modal");
     document.getElementById("game").style.display= 'none';
     document.getElementById("title-screen").style.display='inline';
@@ -52,7 +52,7 @@ document.getElementById("retry").addEventListener("click", function(){
 
 
 document.getElementById("logout").addEventListener("click", function(){
-    var modal = document.getElementById("modal");
+    // var modal = document.getElementById("modal");
     modal.classList.toggle("modal");
     localStorage.clear();
     document.getElementById("game").style.display= 'none';

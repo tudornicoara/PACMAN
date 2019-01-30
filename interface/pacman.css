@@ -653,13 +653,10 @@ blue    -  #50c3fc
     height: 100%;
     width: 100%;
     transform: scale(1.1);
-    /* visibility: hidden; */
+    visibility: hidden;
  
 }
 
-.modal_bkg{
-    background-color: black;
-}
 
 @-webkit-keyframes fadeIn {
     from {opacity: 0} 
@@ -689,11 +686,11 @@ blue    -  #50c3fc
 }
 
 
-.show_modal {
+/* .show_modal {
     opacity: 1;
     visibility: visible;
     transform: scale(1.0);
-}
+} */
 
 
 h1, h2{
@@ -708,13 +705,26 @@ h1, h2{
     
 }
 
-button{
-    background-color: rgba(182, 103, 51, 0.781);
-    padding: none;
-    display: inline;
-    border-radius: 4px;
+button {
+    background-color: rgb(201, 114, 44);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }
 
+button:hover {
+    opacity:1;
+}
+
+h1{
+    text-shadow: -1px 0 black, 0 3px black, 3px 0 black, 0 -1px black;
+    color: #fcb150;
+    font-family: "Comic Sans MS";
+}
 
 /* h1{
     font-size: 35px;

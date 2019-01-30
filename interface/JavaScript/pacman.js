@@ -239,9 +239,6 @@ function level7(map){
 // GAME OVER MODAL
 
 var modal = document.getElementById("modal");
-// var modal = document.querySelector(".modal");
-// var modal_trigger = document.querySelector(".modal_trigger");
-
 
 function toggleModal() {
     modal.classList.toggle("modal");
@@ -792,47 +789,54 @@ function game() {
     }
 }
 
+document.getElementById("start").addEventListener("click", function(){
+    document.getElementById("win").style.display='none';
+    document.getElementById("level_complete").style.display='none';
 
-// document.getElementById("logoutNl").addEventListener("click", function(){
-//     var level_complete = document.getElementById("level_complete");
-//     level_complete.classList.toggle("level_complete");
-//     localStorage.clear();
-//     document.getElementById("game").style.display= 'none';
-//     document.getElementById("title-screen").style.display='inline';
-//     document.getElementById("start").style.display = 'none';
-//     document.getElementById("login").style.display = 'flex';
-//     document.body.style.background = 'none';
-//     restart();
+});
 
-// });
+document.getElementById("logoutNl").addEventListener("click", function(){
+    var level_complete = document.getElementById("level_complete");
+    level_complete.classList.toggle("level_complete");
+    localStorage.clear();
+    document.getElementById("game").style.display= 'none';
+    document.getElementById("title-screen").style.display='inline';
+    document.getElementById("start").style.display = 'none';
+    document.getElementById("login").style.display = 'flex';
+    document.body.style.background = 'none';
+    restart();
+    document.getElementById("level_complete").style.display='none';
+
+});
 
 document.getElementById("nextLvl").addEventListener("click", function(){
         changeLevel();
         createTeachers();
         toggleLvlModal()
-})
+        document.getElementById("level_complete").style.display='none';
+});
 
-// document.getElementById("retryGame").addEventListener("click", function(){
-//     var win = document.getElementById("win");
-//     win.classList.toggle("win");
-//     document.getElementById("game").style.display= 'none';
-//     document.getElementById("title-screen").style.display='inline';
-//     document.getElementById("start").style.display = 'flex';
-//     document.getElementById("login").style.display = 'none';
-//     document.body.style.background = 'none';
-//     restart();
 
-// }); 
+document.getElementById("retryGame").addEventListener("click", function(){
+    document.getElementById("game").style.display= 'none';
+    document.getElementById("title-screen").style.display='inline';
+    document.getElementById("start").style.display = 'flex';
+    document.getElementById("login").style.display = 'none';
+    document.body.style.background = 'none';
+    restart();
+    document.getElementById("win").style.display='none';
+}); 
 
-// document.getElementById("logoutLast").addEventListener("click", function(){
-//     var win = document.getElementById("win");
-//     win.classList.toggle("win");
-//     localStorage.clear();
-//     document.getElementById("game").style.display= 'none';
-//     document.getElementById("title-screen").style.display='inline';
-//     document.getElementById("start").style.display = 'none';
-//     document.getElementById("login").style.display = 'flex';
-//     document.body.style.background = 'none';
-//     restart();
 
-// });
+
+
+document.getElementById("logoutLast").addEventListener("click", function(){
+    document.getElementById("game").style.display= 'none';
+    document.getElementById("title-screen").style.display='inline';
+    document.getElementById("start").style.display = 'none';
+    document.getElementById("login").style.display = 'flex';
+    document.body.style.background = 'none';
+    localStorage.clear();
+    restart();
+
+});
