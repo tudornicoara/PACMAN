@@ -748,3 +748,49 @@ a{
       opacity: 0;
     }
 }
+
+
+
+/* level complete modal */
+.level_complete{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color:rgb(255, 255, 255);
+    padding: 1rem 1.5rem;
+    width: 10%;
+    border-radius: 0.8rem;
+    transform: translate(-50%, -50%);
+
+}
+
+.level_complete h1{
+    font-size: 20px;
+
+}
+
+
+
+/* win modal */
+
+.win{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color:rgb(255, 255, 255);
+    padding: 1rem 1.5rem;
+    width: 15%;
+    border-radius: 0.8rem;
+    transform: translate(-50%, -50%);
+
+}
+
+.win h1{
+    font-size: 20px;
+
+}
+
+.win h2{
+    font-size: 17px;
+    margin-left: 5%;
+}

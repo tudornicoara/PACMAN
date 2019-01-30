@@ -144,7 +144,7 @@ http.createServer(function(req, response) {
             });
             break;
         default:
-            console.log(myUrl.pathname)
-            break
+            console.log(myUrl.pathname);
+            break;
     }
     }).listen(8000);
