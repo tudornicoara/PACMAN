@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>  
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="finalReport.css">
+</head> 
+<html property="http://scholarly-html.org/schtml">
+ <body>
+    
+    <div class="transparent-box">
+        <img role="doc-cover" src="../images/logo.png" alt="app_logo"/>
+    </div>
+        
+    <div class="container">
+        <h4> Faculty of Computer Science - Alexandru Ioan Cuza University Iasi</h4>
+        <h1>
+            <p itemprop="name" property="http://purl.org/dc/terms/title">DAWNC project</p>
+        </h1> 
+        <h2>
+            <p itemprop="name">Team members</p>
+        </h2>
+
+        <p property="http://purl.org/dc/terms/creator">Nicoara Tudor</p>
+        <p property="http://purl.org/dc/terms/creator">Burlacu Emil-Claudiu</p>
+        <p property="http://purl.org/dc/terms/creator">Piclea Cristina</p>
+        <p> English Group - 3rd year</p>
+
+        <h2>Table of contents</h2>
+        <ol>
+            <li> Abstract</li>
+            <li> Project description</li>
+            <li> Progress</li> 
+            <li> Testing</li>
+            <li> Source code</li>
+        </ol> 
+
+        <section role="doc-abstract" aria-label="Abstract">
+            <h2>1. Abstract </h2>
+            <p>
+                This page represents the architecture and the documentation of our web application that is further described in the following sections. It contains the functionalities, the usecases and some diagrams meant to show the guidelines that we want to follow in order to implement our application. The technologies used are presented at the 4th point of this page.
+            </p>
+        </section>
+
+        
+        <section itemprop="description">
+            <h2> 2. Project description</h2>
+            <p> Our application's aim is to create a pacman experience of our faculty (Faculty of Computer Science - Iasi). The opponents are characters created by the computer. The user will be represented based on his Facebook profile image. For every level of the game a new map will be rendered, spanning through a number of floors in the faculty. There will be offered coins and powerups in order to increase the score. In the map, there will be present some "ghosts" that will represent the teachers of the user. </p>
+        </section>
+
+        <section itemprop="functionalities">
+            <h2> 3. Progress -> Functionalities implemented</h2>
+            <ul>
+                <h2> User's Usecases</h2>
+                <ul>
+                    <li> when the user enters the application, the login page will appear;</li>
+                    <li> after clicking the -login with facebook- button a popup provided with Firebase will appear;</li>
+                    <li> the user enters his/her credentials and then manages or not to login;</li>
+                    <li> after the login phase, the user is redirected to the Start Game page, where he/she has to click the -Start Game- button in order to continue;</li>
+                    <li> after clicking the -Start Game- button, the user is redirected to the first level of the game;</li>
+                    <li> if the user wins the current level, he/she will be prompted with a popup from which he/she can choose to go to the next level or to logout from the application;</li>
+                    <li> if the user loses the game, he/she will be prompted with a GameOver message and with the possibilites to retry playing or logging out from the application;</li>
+                    <li> when the user reaches the final level, he/she will be prompted with a congratulations message and the possibilites to retry the game or to logout from the application;</li>
+        
+                    <img src="../images/user-usecase.png">
+                    <h4><a href="https://drive.google.com/file/d/1bCx3-KXea86l0IcCdMMM9XUpH3JLaQeP/view?usp=sharing">Link to the usecase diagram</a></h4>
+                </ul>
+
+
+                <h2> The flow of the application</h2>
+                <li> Login page - the first interaction of the user with our application:</li>
+                    <img src="../images/login_page.png">
+                <li> Successfull authentification with Facebook using Firebase:</li>
+                    <img src="../images/login_wf.png">
+                <li> The user remains logged in at every stage of the game - localStorage</li>
+                <li> after the login phase, Start Game page appears:</li>
+                    <img src="../images/start_game_page.png">
+                <li> A level of the game:</li>
+                    <img src="../images/level.png">
+                <li> Next level screen:</li>
+                    <img src ="../images/level_complete.png">
+                <li> GameOver screen:</li>
+                    <img src="../images/gameOver.png">
+                <li> Win screen:</li>
+                    <img src="../images/win.png">
+             </ul>
+
+        </section>
+
+        <section itemprop="testing">
+            <h2> 4. Testing</h2>
+            <p> 
+                Like every application, UAIC-MAN has its bugs, but those do not have a major impact on the natural flow of the game.
+            </p>
+        </section>
+        
+        <section itemprop="development">
+                <h2>5. Source code</h2>
+                <ul>
+                    <li id="4" role="doc-endnote">Link to the project's source code <a type = "url" href="https://github.com/tudornicoara/PACMAN">here</a></li>
+                </ul>
+        </section>
+
+
+        <div class="date">
+            <span type=xsd:date>
+                <script> document.write(new Date().toLocaleDateString()); </script>
+            </span>
+        </div>  
+    
+    </div>
+    
+
+    
+ 
+ </body>
+ </html>
